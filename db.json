@@ -1,0 +1,37 @@
+{
+  "posts": [
+    {
+      "name": "Chandra Sekhar",
+      "email": "chandutogiri3@gmail.com",
+      "mobile": "1234567890",
+      "foodType": "snack",
+      "quantity": "100",
+      "created_at": "19/10/2023",
+      "lattitude": "17.4235107",
+      "longitude": "78.3399105",
+      "id": 1
+    },
+    {
+      "name": "Chandra Sekhar",
+      "email": "chandutogiri3@gmail.com",
+      "mobile": "9182886496",
+      "foodType": "breakfast",
+      "quantity": "100",
+      "created_at": "20/10/2023",
+      "lattitude": "",
+      "longitude": "",
+      "id": 2
+    },
+    {
+      "name": "Chandu",
+      "email": "chandusai961@gmail.com",
+      "mobile": "9182886496",
+      "foodType": "snack",
+      "quantity": "1000",
+      "created_at": "22/10/2023",
+      "lattitude": "17.7016246",
+      "longitude": "83.1924743",
+      "id": 3
+    }
+  ]
+}
