@@ -39,7 +39,7 @@ export function Menu() {
           />
         </Link>
       </Tooltip>
-      <Tooltip label="ContactUs" placement="bottom">
+      {/* <Tooltip label="ContactUs" placement="bottom">
         <Link to="/ContactUs">
           <IconButton
             icon={<BsFillTelephoneFill fontSize="24px" />}
@@ -48,7 +48,7 @@ export function Menu() {
             variant={colorMode === "light" ? "solid" : "ghost"}
           />
         </Link>
-      </Tooltip>
+      </Tooltip> */}
     </>
   );
 }
