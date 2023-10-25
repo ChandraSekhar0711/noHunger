@@ -123,9 +123,9 @@ export function Signup() {
     // Log 'otp' in a useEffect to ensure you get the updated value
   };
 
-  useEffect(() => {
-    console.log(otp);
-  }, [otp]);
+  // useEffect(() => {
+  //   console.log(otp);
+  // }, [otp]);
   const verifyOTP = async (e) => {
     e.preventDefault();
     if (await authCodeStatus.confirm(otp)) {
