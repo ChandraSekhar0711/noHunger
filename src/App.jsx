@@ -9,29 +9,18 @@ import { Profile } from "./Pages/Profile/Profile";
 import blob from "@/assets/blob.svg";
 // import { Signin } from "./Pages/Signin/Signin";
 import { withAuthRequired } from "./hoc/withAuthRequired";
+import { PageNotFound } from "./Pages/PageNotFound/PageNotFound";
 //import waveSvg from "@/assets/waveSvg.svg";
 export function App() {
   //const [notification, setNotification] = useState();
 
   return (
     <Box
-      bgImage={`url(${blob})`}
-      bgSize="cover"
-      bgRepeat="no-repeat"
-      bgPosition="center"
-      //h={isBottom ? "auto" : "100vh"}
-      h="100vh"
+      
+      
     >
       <HamburgerMenu />
-      <Text
-        m="2"
-        display={{ base: "block", md: "none" }}
-        position="absolute"
-        top="0"
-        right="5"
-      >
-        LOGO
-      </Text>
+      
 
       <Routes>
         <Route path="/" exact element={<Home />} />
@@ -39,6 +28,7 @@ export function App() {
         <Route path="/CreatePost" element={<CreatePost />} />
         <Route path="/ContactUs" element={<ContactUs />} />
         <Route path="/Profile" element={<Profile />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Box>
   );

@@ -47,19 +47,7 @@ export function PopoverBox({ position, justify }) {
   return (
     <Popover placement={position} style={{ zIndex: 9999 }}>
       <PopoverTrigger>
-        {/* <Badge
-          h="12"
-          w="12"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          fontSize="18px"
-          borderRadius="full"
-          cursor="pointer"
-        >
-          {auth.currentUser.displayName}
-        </Badge> */}
-        <Avatar name={user.displayName} cursor="pointer" />
+        <Avatar size={"sm"} name={user.displayName} cursor="pointer" />
       </PopoverTrigger>
       <PopoverContent>
         <PopoverHeader pt={4} fontWeight="bold" border="0">

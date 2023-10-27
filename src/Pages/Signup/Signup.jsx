@@ -62,7 +62,7 @@ export function Signup() {
     console.log("Submitted : ", email, password);
     if (password == rePassword && otpVerifyStatus) {
       try {
-        const user = await AuthAPI.signup(email, password, displayName, mobile);
+        const user = await AuthAPI.signup(email, password, displayName,`+91${mobile}`);
         dispatch(setUser(user));
         await toast(
           "success",
@@ -239,15 +239,19 @@ export function Signup() {
                     </Badge>
                   </InputRightElement>
                 </InputGroup>
+                <HStack m="2" justify="end" >
                 <Badge
                   borderRadius={5}
-                  variant="solid"
+                  variant="outline"
                   colorScheme="teal"
                   onClick={!sentOtpStatus ? sendOTP : verifyOTP}
                   cursor="pointer"
+                 
                 >
                   {!sentOtpStatus ? "send OTP" : "verify"}
                 </Badge>
+                </HStack>
+                
                 {sentOtpStatus && (
                   <HStack m="2">
                     <PinInput size="md" variant="flushed">
