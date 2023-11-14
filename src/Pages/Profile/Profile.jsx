@@ -26,14 +26,7 @@ export function Profile() {
         p={7}
         textAlign={"center"}
       >
-        <Avatar
-          size={"xl"}
-          src={
-            "https://images.unsplash.com/photo-1520810627419-35e362c5dc07?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-          }
-          mb={4}
-          pos={"relative"}
-        >
+        <Avatar size={"xl"} src={user.photoUrl} mb={4} pos={"relative"}>
           <span
             style={{
               content: '""',

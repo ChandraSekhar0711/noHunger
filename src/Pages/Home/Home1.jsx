@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
+import { Illustration } from "@/components/Illustration/Illustration";
 import {
   Box,
   Button,
@@ -8,62 +8,50 @@ import {
   Image,
   Stack,
   Text,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { getAuth } from "firebase/auth";
-
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import noHunger from "@/assets/noHunger.jpeg";
 import { Permissions } from "@/utils/Permissions";
 import { useNavigate } from "react-router-dom";
 import { useGeoLocation } from "@/hooks/useGeoLocation";
 
-import { AuthAPI } from "@/api/auth";
-import { setUser } from "@/store/auth/auth-slice";
-
-export function Home() {
+export function Home1() {
   const navigate = useNavigate();
   const auth = getAuth();
-  const dispatch = useDispatch();
-  // const user = useSelector((store) => store.authSlice.auth.user);
+  const user = useSelector((store) => store.authSlice.auth.user);
   const { location } = useGeoLocation();
   localStorage.setItem("geolocationPermission", location.loaded);
-  // const geolocationPermission = localStorage.getItem("geolocationPermission");
-  // const [permissions, setPermissions] = useState();
-  // const [emailStatus, setEmailStatus] = useState();
+  const geolocationPermission = localStorage.getItem("geolocationPermission");
+  const [permissions, setPermissions] = useState();
+  const [emailStatus, setEmailStatus] = useState();
 
   useEffect(() => {
-    const fetchUser = async (userId) => {
-      const userFetching = await AuthAPI.fetchUser(userId);
-      dispatch(setUser(userFetching));
-      console.log("user:", userFetching);
-    };
-
     async function accessNotifications() {
       const notificationPermission = await Permissions.notifications();
       if (notificationPermission === "granted") {
+        setPermissions("Granted");
         // eslint-disable-next-line no-unused-vars
         const notification = new Notification("Hello, World!", {
           body: "Thank you for granting the permissions.",
           icon: noHunger,
         });
       } else {
-        console.log("permissions denied");
+        setPermissions("denied");
       }
     }
 
     accessNotifications();
 
     if (auth.currentUser) {
-      console.log(auth.currentUser.uid);
-      fetchUser(auth.currentUser.uid);
+      console.log(auth.currentUser);
       if (auth.currentUser.emailVerified) {
-        console.log("email verified:", auth.currentUser.emailVerified);
-        // setEmailStatus(true);
+        setEmailStatus(true);
       } else {
         // sendEmailVerification(auth.currentUser);
-        console.log("email verified:", auth.currentUser.emailVerified);
-        // setEmailStatus(false);
+        setEmailStatus(false);
       }
     }
   }, [auth.currentUser]);
@@ -93,7 +81,6 @@ export function Home() {
             organizations who have excess food with those who are in need of it.
             Here are some key aspects of the "noHunger" application's motive
           </Text>
-
           <Stack spacing={6} direction={"row"}>
             <Button
               rounded={"full"}

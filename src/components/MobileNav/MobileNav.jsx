@@ -7,6 +7,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { FiMenu } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import { PopoverBox } from "../PopoverBox/PopoverBox";
 
 export function MobileNav({ onOpen }) {
@@ -35,7 +36,7 @@ export function MobileNav({ onOpen }) {
         fontFamily="monospace"
         fontWeight="bold"
       >
-        Logo
+        <Link to="/">Logo</Link>
       </Text>
       <HStack display={{ base: "flex", md: "none" }}>
         <PopoverBox position="bottom" justify="space-between" />

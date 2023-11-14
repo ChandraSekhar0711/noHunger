@@ -9,7 +9,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import blob from "@/assets/blob.svg";
+
 
 import { FormInputs } from "@/components/Input/FormInputs";
 import { postsAPI } from "@/api/postAPI";
@@ -61,10 +61,7 @@ export function CreatePost() {
   return (
     <Center
       minH={{ base: "100vh", md: "90vh" }}
-      bgImage={blob}
-      bgSize="cover"
-      bgRepeat="no-repeat"
-      bgPosition="center"
+      
     >
       <Box
         p={4}

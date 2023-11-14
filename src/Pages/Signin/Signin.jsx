@@ -20,74 +20,54 @@ import { useDispatch } from "react-redux";
 import { setUser } from "@/store/auth/auth-slice";
 import { toast } from "@/utils/toast";
 import { useNavigate } from "react-router-dom";
-// import { getAuth, RecaptchaVerifier } from "firebase/auth";
+import { GoogleSignInForm } from "@/forms/GoogleSignin/GoogleSignInForm";
 
 export function Signin() {
   const { colorMode } = useColorMode();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
-  // const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  // const auth = getAuth();
+
   const handleShowClick = () => setShowPassword(!showPassword);
+
+  const googleSignIn = async () => {
+    try {
+      const googleAuth = await AuthAPI.googleSignin();
+      dispatch(setUser(googleAuth));
+      toast("success", "Welcome to noHunger");
+      navigate("/");
+    } catch (error) {
+      console.error("Google Sign-In Error:", error);
+      toast("error", "Failed to sign in with Google");
+    }
+  };
+
   const login = async (e) => {
-    console.log("submitting");
     e.preventDefault();
-    console.log("Submitted : ", email, password);
     try {
       const user = await AuthAPI.signin(email, password);
       dispatch(setUser(user));
       toast("success", "Welcome to noHunger");
       navigate("/");
     } catch (error) {
-      console.log("auth fauiled", error);
+      console.error("Authentication Error:", error);
       toast("error", "Invalid Credentials");
     }
   };
+
   const resetPassword = async (e) => {
     e.preventDefault();
     try {
       await AuthAPI.resetPassword(email);
-      toast("success", "reset password link has been sent");
-    } catch (err) {
-      console.log(err);
-      toast("error", "unable to reset password");
+      toast("success", "Reset password link has been sent");
+    } catch (error) {
+      console.error("Password Reset Error:", error);
+      toast("error", "Unable to reset password");
     }
   };
-  // const mobileNumberVerification = async (e) => {
-  //   e.preventDefault();
-  //   const captcha = new RecaptchaVerifier(
-  //     auth,
-  //     "recaptcha-container", // Make sure this matches the ID of your HTML container
-  //     {
-  //       size: "normal",
-  //       callback: (response) => {
-  //         // reCAPTCHA solved, allow signInWithPhoneNumber.
-  //         console.log("reCAPTCHA response:", response);
-  //       },
-  //       "expired-callback": () => {
-  //         // Handle expired reCAPTCHA, if needed
-  //         console.log("reCAPTCHA expired");
-  //       },
-  //     }
-  //   );
-  //   if (captcha) {
-  //     console.log(captcha);
-  //     const authCode = await AuthAPI.phoneVerification(mobile, captcha);
-  //     console.log("AuthCode : ", authCode);
-  //     const otp = "123486";
-  //     window.confirmationResult = authCode;
 
-  //     console.log(authCode.confirm(otp));
-  //     if (authCode.confirm(otp)) {
-  //       console.log("Otp verified");
-  //     } else {
-  //       console.log("invalid otp");
-  //     }
-  //   }
-  // };
   return (
     <Flex
       flexDirection="column"
@@ -117,7 +97,7 @@ export function Signin() {
                 <InputGroup>
                   <InputLeftElement pointerEvents="none" />
                   <Input
-                    type="email"
+                    type="text"
                     placeholder="email address"
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -142,16 +122,6 @@ export function Signin() {
                   <Link onClick={resetPassword}>forgot password?</Link>
                 </FormHelperText>
               </FormControl>
-              {/* <FormControl>
-                <InputGroup>
-                  <InputLeftElement pointerEvents="none" />
-                  <Input
-                    type="text"
-                    placeholder="mobile"
-                    onChange={(e) => setMobile(e.target.value)}
-                  />
-                </InputGroup>
-              </FormControl> */}
               <Button
                 borderRadius={0}
                 type="submit"
@@ -161,17 +131,10 @@ export function Signin() {
               >
                 Login
               </Button>
-              {/* <Badge
-                borderRadius={0}
-                variant="solid"
-                colorScheme="teal"
-                onClick={mobileNumberVerification}
-              >
-                Login with number
-              </Badge> */}
             </Stack>
           </form>
         </Box>
+        <GoogleSignInForm onSubmit={googleSignIn} />
       </Stack>
       <Box>
         New to us?{" "}

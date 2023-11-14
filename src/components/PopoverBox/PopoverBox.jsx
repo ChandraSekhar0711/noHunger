@@ -30,7 +30,7 @@ export function PopoverBox({ position, justify }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.authSlice.auth.user);
-  console.log(user);
+  //console.log(user);
   const { colorMode, toggleColorMode } = useColorMode();
   const sun = <BsSun fontSize="18px" />;
   const moon = <BsFillMoonFill fontSize="18px" />;
@@ -47,7 +47,12 @@ export function PopoverBox({ position, justify }) {
   return (
     <Popover placement={position} style={{ zIndex: 9999 }}>
       <PopoverTrigger>
-        <Avatar size={"sm"} name={user.displayName} cursor="pointer" />
+        <Avatar
+          size={"sm"}
+          name={user.displayName}
+          src={user.photoUrl}
+          cursor="pointer"
+        />
       </PopoverTrigger>
       <PopoverContent>
         <PopoverHeader pt={4} fontWeight="bold" border="0">
