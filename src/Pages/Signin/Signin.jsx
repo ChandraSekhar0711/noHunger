@@ -33,6 +33,7 @@ export function Signin() {
   const handleShowClick = () => setShowPassword(!showPassword);
 
   const googleSignIn = async () => {
+    console.log("user creating");
     try {
       const googleAuth = await AuthAPI.googleSignin();
       dispatch(setUser(googleAuth));
