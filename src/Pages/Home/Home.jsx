@@ -36,7 +36,7 @@ export function Home() {
     const fetchUser = async (userId) => {
       const userFetching = await AuthAPI.fetchUser(userId);
       dispatch(setUser(userFetching));
-      console.log("user:", userFetching);
+      //console.log("user:", userFetching);
     };
 
     async function accessNotifications() {
@@ -55,10 +55,10 @@ export function Home() {
     accessNotifications();
 
     if (auth.currentUser) {
-      console.log(auth.currentUser.uid);
+      //console.log(auth.currentUser.uid);
       fetchUser(auth.currentUser.uid);
       if (auth.currentUser.emailVerified) {
-        console.log("email verified:", auth.currentUser.emailVerified);
+        //console.log("email verified:", auth.currentUser.emailVerified);
         // setEmailStatus(true);
       } else {
         // sendEmailVerification(auth.currentUser);

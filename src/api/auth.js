@@ -102,13 +102,23 @@ export class AuthAPI {
         mobile: "",
       };
 
-      const userCreated = await this.createUser({
-        ...formData,
-        created_at: new Date().toLocaleDateString(),
-      });
-
-      console.log("userCreated:", userCreated);
+      const userExists = await this.fetchUser(signedUser.uid)
+      if(!userExists){
+        const userCreated = await this.createUser({
+          ...formData,
+          created_at: new Date().toLocaleDateString(),
+        });
+        console.log("userCreated:", userCreated);
       return userCreated;
+      } else {
+        console.log("User already exists:", userExists);
+        // You might want to handle the case where the user already exists
+        // Maybe update some information or perform other actions
+        return userExists;
+      }
+      
+
+      
     } catch (error) {
       console.error("Google Sign-In Error:", error);
       throw error;

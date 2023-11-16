@@ -1,7 +1,7 @@
 export class Permissions {
   static async notifications() {
     const permission = await Notification.requestPermission();
-    console.log(permission);
+    //console.log(permission);
     return permission;
   }
   // static async location() {
