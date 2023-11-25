@@ -18,15 +18,19 @@ export function DisplayRequests() {
   async function fetchAllPosts() {
     const requests = await RequestsApi.fetchRequests();
     console.log("Requests:",requests);
-    const posts = await postsAPI.fetchAll();
+    //const posts = await postsAPI.fetchAll();
     dispatch(setPosts(requests));
   }
   const post = useSelector((store) => store.postSlice.posts);
   // console.log("posts:",post);
-  // console.table(post);
+ 
+  console.table(post);
   //console.log(post);
   useEffect(() => {
-    fetchAllPosts();
+    const fetchData = async () => {
+      await fetchAllPosts();
+    };
+    fetchData();
   }, []);
   //console.log(List);
   return (

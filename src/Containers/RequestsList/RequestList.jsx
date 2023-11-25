@@ -81,7 +81,7 @@ export function RequestList({ list }) {
 
             <CardFooter
               justify="space-between"
-              flexWrap="wrap"
+              flexWrap={{base:"1",md:"wrap"}}
               sx={{
                 "& > button": {
                   minW: "100px",

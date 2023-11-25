@@ -60,17 +60,17 @@ export function CreatePost() {
     });
 
     //console.log("Created post : ",createRequest);
-    const createPost = await postsAPI.createPosts({
-      ...formData,
-      created_at: new Date().toLocaleDateString(),
-      photoUrl: user.photoUrl,
-      uid: user.uid,
-      coordinates: {
-        _lat: `${location.coordinates.lat.toString()}`,  // Replace with your actual latitude value
-        _long: `${location.coordinates.lon.toString()}`, // Replace with your actual longitude value
-      },
-    });
-    dispatch(addPosts(createPost));
+    // const createPost = await postsAPI.createPosts({
+    //   ...formData,
+    //   created_at: new Date().toLocaleDateString(),
+    //   photoUrl: user.photoUrl,
+    //   uid: user.uid,
+    //   coordinates: {
+    //     _lat: `${location.coordinates.lat.toString()}`,  // Replace with your actual latitude value
+    //     _long: `${location.coordinates.lon.toString()}`, // Replace with your actual longitude value
+    //   },
+    // });
+    dispatch(addPosts(createRequest));
 
     toast("success", "Post Created");
     navigate("/Requests");
@@ -133,53 +133,52 @@ export function CreatePost() {
               formLabel="Mobile"
               type="number"
               name="mobile"
-              vavalue={formData.mobile}
+              value={formData.mobile}
               handleChange={handleInputChange}
               placeholder="Your Mobile"
               disable={false}
             />
 
 <FormControl>
-  <FormLabel>Food Type</FormLabel>
-  <Select
-    name="foodType"
-    value={formData.food.type}
-    onChange={(e) => {
-      setFormData({
-        ...formData,
-        food: {
-          ...formData.food,
-          type: e.target.value,
-        },
-      });
-    }}
-    variant="filled"
-  >
-    <option value="snack">Snack</option>
-    <option value="lunch">Lunch</option>
-    <option value="breakfast">Breakfast</option>
-    <option value="juices">Juices</option>
-  </Select>
-</FormControl>
+              <FormLabel>Food Type</FormLabel>
+              <Select
+                name="foodType"
+                value={formData.food.type}
+                onChange={(e) => {
+                  setFormData({
+                    ...formData,
+                    food: {
+                      ...formData.food,
+                      type: e.target.value,
+                    },
+                  });
+                }}
+                variant="filled"
+              >
+                <option value="snack">Snack</option>
+                <option value="lunch">Lunch</option>
+                <option value="breakfast">Breakfast</option>
+                <option value="juices">Juices</option>
+              </Select>
+            </FormControl>
 
-<FormInputs
-  formLabel="Quantity"
-  type="number"
-  name="quantity"
-  value={formData.food.quantity}
-  handleChange={(e) => {
-    setFormData({
-      ...formData,
-      food: {
-        ...formData.food,
-        quantity: e.target.value,
-      },
-    });
-  }}
-  placeholder="Provide approx quantity"
-  disable={false}
-/>
-
+            <FormInputs
+              formLabel="Quantity"
+              type="number"
+              name="quantity"
+              value={formData.food.quantity}
+              handleChange={(e) => {
+                setFormData({
+                  ...formData,
+                  food: {
+                    ...formData.food,
+                    quantity: e.target.value,
+                  },
+                });
+              }}
+              placeholder="Provide approx quantity"
+              disable={false}
+            />
 
             <Button colorScheme="teal" type="submit">
               Submit

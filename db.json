@@ -1,6 +1,5 @@
 {
   "posts": [
-    
     {
       "name": "Chandra Sekhar",
       "email": "chandutogiri3@gmail.com",
@@ -17,6 +16,40 @@
         "_long": "78.348288"
       },
       "id": 1
+    },
+    {
+      "name": "Chandra Sekhar ",
+      "email": "chandutogiri3@gmail.com",
+      "mobile": "475768798706",
+      "food": {
+        "type": "snack",
+        "quantity": "35"
+      },
+      "photoUrl": "",
+      "uid": "xq6hOvstWobyJHmEIOYus5dDK543",
+      "created_at": "11/25/2023",
+      "coordinates": {
+        "_lat": "17.4391296",
+        "_long": "78.348288"
+      },
+      "id": 2
+    },
+    {
+      "name": "Chandra Sekhar ",
+      "email": "chandutogiri3@gmail.com",
+      "mobile": "9182886496",
+      "food": {
+        "type": "juices",
+        "quantity": "45"
+      },
+      "photoUrl": "",
+      "uid": "xq6hOvstWobyJHmEIOYus5dDK543",
+      "created_at": "11/25/2023",
+      "coordinates": {
+        "_lat": "17.4303904",
+        "_long": "78.3260065"
+      },
+      "id": 3
     }
   ]
 }
