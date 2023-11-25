@@ -20,11 +20,12 @@ import { useGeoLocation } from "@/hooks/useGeoLocation";
 import { useNavigate } from "react-router-dom";
 import { toast } from "@/utils/toast";
 import { store } from "@/store";
+import { RequestsApi } from "@/api/requests";
 
 //import { navigate } from "vite-plugin-ssr/client/router";
 export function CreatePost() {
   const user = useSelector((store) => store.authSlice.auth.user);
-
+// console.log("user:",user);
   const navigate = useNavigate();
   const toasting = useToast();
   const { location } = useGeoLocation();
@@ -32,8 +33,10 @@ export function CreatePost() {
     name: `${user.displayName}`,
     email: `${user.email}`,
     mobile: "",
-    foodType: "snack",
-    quantity: "",
+    food: {type: "snack",quantity:0},
+    photoUrl:"",
+    uid:""
+    
   });
   const dispatch = useDispatch();
 
@@ -46,11 +49,26 @@ export function CreatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     //console.log(formData);
+    const createRequest = await RequestsApi.createRequest({...formData,
+      created_at: new Date().toLocaleDateString(),
+      photoUrl: user.photoUrl,
+      uid: user.uid,
+      coordinates: {
+        _lat: `${location.coordinates.lat.toString()}`,  // Replace with your actual latitude value
+        _long: `${location.coordinates.lon.toString()}`, // Replace with your actual longitude value
+      },
+    });
+
+    //console.log("Created post : ",createRequest);
     const createPost = await postsAPI.createPosts({
       ...formData,
       created_at: new Date().toLocaleDateString(),
-      lattitude: `${location.coordinates.lat}`,
-      longitude: `${location.coordinates.lon}`,
+      photoUrl: user.photoUrl,
+      uid: user.uid,
+      coordinates: {
+        _lat: `${location.coordinates.lat.toString()}`,  // Replace with your actual latitude value
+        _long: `${location.coordinates.lon.toString()}`, // Replace with your actual longitude value
+      },
     });
     dispatch(addPosts(createPost));
 
@@ -82,7 +100,7 @@ export function CreatePost() {
               value={user.displayName}
               handleChange={handleInputChange}
               placeholder="Your Name"
-              disable="true"
+              disable={true}
             />
 
             <FormInputs
@@ -121,30 +139,47 @@ export function CreatePost() {
               disable={false}
             />
 
-            <FormControl>
-              <FormLabel>Food Type</FormLabel>
-              <Select
-                name="foodType"
-                value={formData.foodType}
-                onChange={handleInputChange}
-                variant="filled"
-              >
-                <option value="snack">Snack</option>
-                <option value="lunch">Lunch</option>
-                <option value="breakfast">Breakfast</option>
-                <option value="juices">Juices</option>
-              </Select>
-            </FormControl>
+<FormControl>
+  <FormLabel>Food Type</FormLabel>
+  <Select
+    name="foodType"
+    value={formData.food.type}
+    onChange={(e) => {
+      setFormData({
+        ...formData,
+        food: {
+          ...formData.food,
+          type: e.target.value,
+        },
+      });
+    }}
+    variant="filled"
+  >
+    <option value="snack">Snack</option>
+    <option value="lunch">Lunch</option>
+    <option value="breakfast">Breakfast</option>
+    <option value="juices">Juices</option>
+  </Select>
+</FormControl>
 
-            <FormInputs
-              formLabel="Quantity"
-              type="number"
-              name="quantity"
-              value={formData.quantity}
-              handleChange={handleInputChange}
-              placeholder="Provide approax quantity"
-              disable={false}
-            />
+<FormInputs
+  formLabel="Quantity"
+  type="number"
+  name="quantity"
+  value={formData.food.quantity}
+  handleChange={(e) => {
+    setFormData({
+      ...formData,
+      food: {
+        ...formData.food,
+        quantity: e.target.value,
+      },
+    });
+  }}
+  placeholder="Provide approx quantity"
+  disable={false}
+/>
+
 
             <Button colorScheme="teal" type="submit">
               Submit

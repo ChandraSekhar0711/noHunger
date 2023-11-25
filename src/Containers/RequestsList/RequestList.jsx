@@ -51,7 +51,7 @@ export function RequestList({ list }) {
                 <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
                   <Avatar
                     name={request.name}
-                    src="https://bit.ly/sage-adebayo"
+                    src={request.photoUrl}
                   />
 
                   <Box>
@@ -70,10 +70,10 @@ export function RequestList({ list }) {
               <Text>
                 <Wrap spacing={10} justify="center">
                   <WrapItem>
-                    <Text>Food : {request.foodType}</Text>
+                    <Text>Food : {request.food.type}</Text>
                   </WrapItem>
                   <WrapItem>
-                    <Text>Quantity : {request.quantity}</Text>
+                    <Text>Quantity : {request.food.quantity}</Text>
                   </WrapItem>
                 </Wrap>
               </Text>
@@ -100,7 +100,7 @@ export function RequestList({ list }) {
                 leftIcon={
                   <BiSolidNavigation
                     onClick={() =>
-                      Direction(`${request.lattitude}`, `${request.longitude}`)
+                      Direction(`${request.coordinates._lat}`, `${request.coordinates._long}`)
                     }
                   />
                 }

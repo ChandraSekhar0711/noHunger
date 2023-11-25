@@ -8,6 +8,7 @@ import { setPosts } from "@/store/posts/posts-slice";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { RequestsApi } from "@/api/requests";
 // import { withAuthRequired } from "@/hoc/withAuthRequired";
 
 export function DisplayRequests() {
@@ -15,11 +16,14 @@ export function DisplayRequests() {
 
   //console.log(isBottom);
   async function fetchAllPosts() {
+    const requests = await RequestsApi.fetchRequests();
+    console.log("Requests:",requests);
     const posts = await postsAPI.fetchAll();
-    dispatch(setPosts(posts));
+    dispatch(setPosts(requests));
   }
   const post = useSelector((store) => store.postSlice.posts);
-  console.table(post);
+  // console.log("posts:",post);
+  // console.table(post);
   //console.log(post);
   useEffect(() => {
     fetchAllPosts();
@@ -41,12 +45,7 @@ export function DisplayRequests() {
             md: "repeat(auto-fill, minmax(350px, 1fr))",
           }}
           p={5}
-          bgImage={`url(${blob})`}
-          bgSize="cover"
-          bgRepeat="no-repeat"
-          bgPosition="center"
-          //h={isBottom ? "auto" : "100vh"}
-          h="auto"
+          
         >
           <RequestList list={post} />
         </SimpleGrid>
