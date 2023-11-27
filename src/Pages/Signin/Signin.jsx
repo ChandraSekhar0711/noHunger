@@ -18,11 +18,13 @@ import {
 import { AuthAPI } from "@/api/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/store/auth/auth-slice";
-import { toast } from "@/utils/toast";
+
 import { useNavigate } from "react-router-dom";
 import { GoogleSignInForm } from "@/forms/GoogleSignin/GoogleSignInForm";
+import { sweetAlert } from "@/utils/sweetAlert";
 
 export function Signin() {
+  const showToast = sweetAlert();
   const { colorMode } = useColorMode();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -37,11 +39,11 @@ export function Signin() {
     try {
       const googleAuth = await AuthAPI.googleSignin();
       dispatch(setUser(googleAuth));
-      toast("success", "Welcome to noHunger");
+      showToast("success", "Welcome to noHunger");
       navigate("/");
     } catch (error) {
       console.error("Google Sign-In Error:", error);
-      toast("error", "Failed to sign in with Google");
+      showToast("error", "Failed to sign in with Google");
     }
   };
 
@@ -50,11 +52,11 @@ export function Signin() {
     try {
       const user = await AuthAPI.signin(email, password);
       dispatch(setUser(user));
-      toast("success", "Welcome to noHunger");
+      showToast("success", "Welcome to noHunger");
       navigate("/");
     } catch (error) {
       console.error("Authentication Error:", error);
-      toast("error", "Invalid Credentials");
+      showToast("error", "Invalid Credentials");
     }
   };
 
@@ -62,10 +64,10 @@ export function Signin() {
     e.preventDefault();
     try {
       await AuthAPI.resetPassword(email);
-      toast("success", "Reset password link has been sent");
+      showToast("success", "Reset password link has been sent");
     } catch (error) {
       console.error("Password Reset Error:", error);
-      toast("error", "Unable to reset password");
+      showToast("error", "Unable to reset password");
     }
   };
 

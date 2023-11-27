@@ -1,5 +1,5 @@
 import { FirebaseApp } from "@/Services/Firebase";
-import { toast } from "@/utils/toast";
+
 import {
   signInWithEmailAndPassword,
   signOut as signOutAuth,
@@ -48,7 +48,7 @@ export class AuthAPI {
   static async createUser(formData) {
     const response = await addDoc(collection(FirebaseApp.db, "users"), formData);
     console.log("userCreated");
-    toast("success", "user is created");
+    //toast("success", "user is created");
     return { id: response.id, ...formData };
   }
 

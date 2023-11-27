@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import { toast } from "@/utils/toast";
+
+import { sweetAlert } from "@/utils/sweetAlert";
 import { EmailIcon, LockIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
   Avatar,
@@ -14,12 +15,14 @@ import {
   InputRightElement,
   Stack,
   useColorMode,
+  Link
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { BsPersonCircle } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUpForm({ onSubmit }) {
+  const showToast = sweetAlert();
   const navigate = useNavigate();
   const { colorMode } = useColorMode();
 
@@ -45,7 +48,7 @@ export default function SignUpForm({ onSubmit }) {
       //console.log(formData);
       onSubmit(formData, password);
     } else {
-      toast("error", "password didn't match");
+      showToast("error", "password didn't match");
     }
   };
   const handleInputChange = (e) => {
@@ -138,48 +141,7 @@ export default function SignUpForm({ onSubmit }) {
                   </InputRightElement>
                 </InputGroup>
               </FormControl>
-              {/* <FormControl>
-              <InputGroup>
-                <InputLeftElement pointerEvents="none">
-                  <PhoneIcon color="gray.300" />
-                </InputLeftElement>
-                <Input
-                  type="tel"
-                  placeholder="Phone number"
-                  onChange={(e) => setMobile(e.target.value)}
-                />
-                <InputRightElement width="4.5rem">
-                  <Badge>
-                    {otpVerifyStatus ? (
-                      <CheckIcon color="green.500" />
-                    ) : (
-                      <CloseIcon color="red.500" />
-                    )}
-                  </Badge>
-                </InputRightElement>
-              </InputGroup>
-              <Badge
-                borderRadius={5}
-                variant="solid"
-                colorScheme="teal"
-                onClick={!sentOtpStatus ? sendOTP : verifyOTP}
-                cursor="pointer"
-              >
-                {!sentOtpStatus ? "send OTP" : "verify"}
-              </Badge>
-              {sentOtpStatus && (
-                <HStack m="2">
-                  <PinInput size="md" variant="flushed">
-                    {[0, 1, 2, 3, 4, 5].map((index) => (
-                      <PinInputField
-                        key={index}
-                        onChange={(event) => handlePinChange(event)}
-                      />
-                    ))}
-                  </PinInput>
-                </HStack>
-              )}
-            </FormControl> */}
+              
               <Button
                 borderRadius={0}
                 type="submit"
