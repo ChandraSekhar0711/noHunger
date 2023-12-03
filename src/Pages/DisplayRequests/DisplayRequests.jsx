@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { RequestsApi } from "@/api/requests";
 // import { withAuthRequired } from "@/hoc/withAuthRequired";
 
-export function DisplayRequests() {
+export default function DisplayRequests() {
   const dispatch = useDispatch();
 
   //console.log(isBottom);

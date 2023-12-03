@@ -7,7 +7,6 @@ export function useGeoLocation() {
   });
 
   useEffect(() => {
-    let retry = 1;
     const intervel = setInterval(() => {
       if (!("geolocation" in navigator)) {
         console.log("Geolocation is not supported");
@@ -18,14 +17,8 @@ export function useGeoLocation() {
         clearInterval(intervel);
         return;
       }
-
-      if(retry === 3) {
-        clearInterval(intervel);
-      }
-
-      retry = retry + 1;
       navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    });
+    }, 3000);
 
     function onSuccess (location){
       //console.log("Location fetched successfully:", location);

@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 
-export function Profile() {
+export default function Profile() {
   const user = useSelector((store) => store.authSlice.auth.user);
   return (
     <Center py={6} minH={{ base: "70vh", md: "90vh" }}>

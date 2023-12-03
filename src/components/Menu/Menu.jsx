@@ -1,14 +1,10 @@
 /* eslint-disable react/prop-types */
 import { Box, Flex, Icon, useColorModeValue } from "@chakra-ui/react";
+import { Link } from 'react-router-dom';
 
 export function Menu({ icon, name, url, ...rest }) {
   return (
-    <Box
-      as="a"
-      href={url}
-      style={{ textDecoration: "none" }}
-      _focus={{ boxShadow: "none" }}
-    >
+    <Link to = {url}>
       <Flex
         align="center"
         p="2"
@@ -35,7 +31,7 @@ export function Menu({ icon, name, url, ...rest }) {
         )}
         {name}
       </Flex>
-    </Box>
+    </Link>
   );
 
   /* <Tooltip label="Home" placement="bottom">

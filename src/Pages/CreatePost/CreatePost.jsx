@@ -23,7 +23,7 @@ import { store } from "@/store";
 import { RequestsApi } from "@/api/requests";
 
 //import { navigate } from "vite-plugin-ssr/client/router";
-export function CreatePost() {
+export default function CreatePost() {
   const user = useSelector((store) => store.authSlice.auth.user);
 // console.log("user:",user);
   const navigate = useNavigate();
