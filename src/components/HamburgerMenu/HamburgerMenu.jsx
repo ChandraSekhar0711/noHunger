@@ -60,7 +60,8 @@ export function HamburgerMenu() {
               mx="8"
               justifyContent="space-between"
             >
-              <Text fontSize="3xl" fontFamily="monospace" fontWeight="bold">
+              <Text fontSize="3xl" fontFamily="monospace" fontWeight="bold"
+              >
                 Logo
               </Text>
               <CloseButton
@@ -69,12 +70,15 @@ export function HamburgerMenu() {
               />
             </Flex>
             {LinkItems.map((link) => (
-              <Menu
-                key={link.name}
-                icon={link.icon}
-                name={link.name}
-                url={link.url}
-              />
+              <div 
+              key={link.name}          
+              onClick={onClose}>
+                <Menu
+                  icon={link.icon}
+                  name={link.name}
+                  url={link.url}
+                />
+              </div>
             ))}
           </Flex>
         </DrawerContent>
