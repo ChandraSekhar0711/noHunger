@@ -1,5 +1,5 @@
 import { FirebaseApp } from "@/Services/Firebase";
-import { addDoc, collection, getDoc, getDocs, query } from "firebase/firestore";
+import { addDoc, collection, getDoc, getDocs, orderBy, query } from "firebase/firestore";
 
 export class RequestsApi{
   static async createRequest(formValues){
@@ -10,7 +10,7 @@ export class RequestsApi{
     }
   }
   static async fetchRequests(){
-    const q = await query(collection(FirebaseApp.db,"Requests"))
+    const q = await query(collection(FirebaseApp.db,"Requests"),orderBy("created_at","asc"))
     const response = await getDocs(q);
     return response.docs.map((document) => {
       return {

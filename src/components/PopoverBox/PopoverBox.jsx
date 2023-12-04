@@ -1,7 +1,8 @@
 import { AuthAPI } from "@/api/auth";
 // import { store } from "@/store";
 import { setUser } from "@/store/auth/auth-slice";
-import { toast } from "@/utils/toast";
+import { sweetAlert } from "@/utils/sweetAlert";
+
 import { EditIcon } from "@chakra-ui/icons";
 import {
   Avatar,
@@ -26,6 +27,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 export function PopoverBox({ position, justify }) {
+  const showToast = sweetAlert();
   //const auth = getAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -39,9 +41,10 @@ export function PopoverBox({ position, justify }) {
     try {
       await AuthAPI.signOut();
       dispatch(setUser(null));
+      showToast("success","successfully logged out")
       navigate("/Signin");
     } catch (error) {
-      toast("error", error);
+      showToast("error", error);
     }
   };
   return (
