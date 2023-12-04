@@ -1,27 +1,25 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { HamburgerMenu } from "./components/HamburgerMenu/HamburgerMenu";
 import { Home } from "./Pages/Home/Home";
-import { Box, Text } from "@chakra-ui/react";
-import { DisplayRequests } from "./Pages/DisplayRequests/DisplayRequests";
-import { CreatePost } from "./Pages/CreatePost/CreatePost";
-import { ContactUs } from "./Pages/ContactUs/ContactUs";
-import { Profile } from "./Pages/Profile/Profile";
-import blob from "@/assets/blob.svg";
+import { Box } from "@chakra-ui/react";
 // import { Signin } from "./Pages/Signin/Signin";
 import { withAuthRequired } from "./hoc/withAuthRequired";
-import { PageNotFound } from "./Pages/PageNotFound/PageNotFound";
+import {lazy, Suspense} from 'react';
+
+const DisplayRequests = lazy(() => import("./Pages/DisplayRequests/DisplayRequests"));
+const CreatePost = lazy(() => import("./Pages/CreatePost/CreatePost"));
+const ContactUs = lazy(() => import("./Pages/ContactUs/ContactUs"));
+const Profile = lazy(() => import("./Pages/Profile/Profile"))
+const PageNotFound = lazy(() => import("./Pages/PageNotFound/PageNotFound"))
+
 //import waveSvg from "@/assets/waveSvg.svg";
 export function App() {
   //const [notification, setNotification] = useState();
 
   return (
-    <Box
-      
-      
-    >
+    <Box>
       <HamburgerMenu />
-      
-
+      <Suspense fallback = {<p>Loading...</p>}>
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/Requests" element={<DisplayRequests />} />
@@ -30,6 +28,7 @@ export function App() {
         <Route path="/Profile" element={<Profile />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
+      </Suspense>
     </Box>
   );
 }

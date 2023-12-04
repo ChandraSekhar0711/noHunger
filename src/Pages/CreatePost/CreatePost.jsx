@@ -23,7 +23,7 @@ import { RequestsApi } from "@/api/requests";
 import { sweetAlert } from "@/utils/sweetAlert";
 
 //import { navigate } from "vite-plugin-ssr/client/router";
-export function CreatePost() {
+export default function CreatePost() {
   const user = useSelector((store) => store.authSlice.auth.user);
 
   const navigate = useNavigate();

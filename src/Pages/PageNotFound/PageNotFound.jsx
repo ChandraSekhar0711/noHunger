@@ -1,7 +1,7 @@
 import { Box, Heading, Text, Button } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 
-export function PageNotFound() {
+export default function PageNotFound() {
     const navigate = useNavigate();
   return (
     <Box textAlign="center" py={10} px={6}>

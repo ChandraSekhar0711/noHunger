@@ -67,7 +67,7 @@ export function RequestList({ list }) {
               </Flex>
             </CardHeader>
             <CardBody p={2}>
-              <Text>
+              <div>
                 <Wrap spacing={10} justify="center">
                   <WrapItem>
                     <Text>Food : {request.food.type}</Text>
@@ -76,7 +76,7 @@ export function RequestList({ list }) {
                     <Text>Quantity : {request.food.quantity}</Text>
                   </WrapItem>
                 </Wrap>
-              </Text>
+              </div>
             </CardBody>
 
             <CardFooter
