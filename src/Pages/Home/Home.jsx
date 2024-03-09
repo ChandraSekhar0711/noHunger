@@ -1,14 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
 import {
   Box,
-  Button,
   Container,
   Flex,
   Heading,
   Image,
+  Button,
   Stack,
   Text,
 } from "@chakra-ui/react";
+
 import { getAuth } from "firebase/auth";
 
 import { useEffect } from "react";
@@ -20,6 +21,7 @@ import { useGeoLocation } from "@/hooks/useGeoLocation";
 
 import { AuthAPI } from "@/api/auth";
 import { setUser } from "@/store/auth/auth-slice";
+import { Fab } from "ui-neumorphism";
 
 export function Home() {
   const navigate = useNavigate();
@@ -96,6 +98,7 @@ export function Home() {
 
           <Stack spacing={6} direction={"row"}>
             <Button
+              
               rounded={"full"}
               px={6}
               colorScheme={"orange"}
@@ -112,6 +115,10 @@ export function Home() {
             >
               Create Request
             </Button>
+
+            <Fab color='var(--primary)'>
+  <span style={{ fontSize: '30px', margin: '2px 0px 0px 2px' }}>&#43;</span>
+</Fab>
           </Stack>
         </Stack>
         {/* <Flex w={"full"}>

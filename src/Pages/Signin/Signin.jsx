@@ -48,6 +48,7 @@ export function Signin() {
   };
 
   const login = async (e) => {
+    console.log("login in");
     e.preventDefault();
     try {
       const user = await AuthAPI.signin(email, password);
@@ -75,8 +76,8 @@ export function Signin() {
     <Flex
       flexDirection="column"
       width="100wh"
-      height="100vh"
-      backgroundColor={colorMode === "dark" ? "gray.700" : "gray.200"}
+      height="auto"
+      
       justifyContent="center"
       alignItems="center"
     >
@@ -86,14 +87,13 @@ export function Signin() {
         justifyContent="center"
         alignItems="center"
       >
-        <Avatar bg="teal.500" />
-        <Heading color="teal.400">Welcome</Heading>
+        
         <Box minW={{ base: "90%", md: "468px" }}>
           <form onSubmit={login}>
             <Stack
               spacing={4}
               p="1rem"
-              backgroundColor="teal.900"
+             
               boxShadow="md"
             >
               <FormControl>

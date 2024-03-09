@@ -12,6 +12,7 @@ import { Signin } from "./Pages/Signin/Signin";
 import { FirebaseApp } from "./Services/Firebase";
 import { ProtectedApp } from "./App";
 import { Signup } from "./Pages/Signup/Signup";
+import { Signin1 } from "./Pages/Signin/Signin1";
 //import { About } from "./Pages/About/About";
 FirebaseApp.init();
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -20,7 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <ColorModeScript initialColorMode={myTheme.config.initialColorMode} />
       <BrowserRouter>
         <Routes>
-          <Route path="/Signin" element={<Signin />} />
+          <Route path="/Signin" element={<Signin1 />} />
           <Route path="/Signup" element={<Signup />} />
         </Routes>
         <ProtectedApp />
