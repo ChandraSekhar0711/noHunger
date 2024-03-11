@@ -13,6 +13,7 @@ import { FiHome, FiCompass, FiStar } from "react-icons/fi";
 import { Menu } from "../Menu/Menu";
 import { HeadBarContent } from "../HeadBarContent/HeadBarContent";
 import { MobileNav } from "../MobileNav/MobileNav";
+import { Logo } from "../Logo/Logo";
 
 const LinkItems = [
   { name: "Home", icon: FiHome, url: "/" },
@@ -45,9 +46,9 @@ export function HamburgerMenu() {
         <DrawerContent>
           <Flex
             transition="3s ease"
-            bg={useColorModeValue("white", "gray.900")}
+          
             borderRight="1px"
-            borderRightColor={useColorModeValue("gray.200", "gray.700")}
+            
             w={{ base: "full" }}
             pos="fixed"
             h="full"
@@ -62,7 +63,7 @@ export function HamburgerMenu() {
             >
               <Text fontSize="3xl" fontFamily="monospace" fontWeight="bold"
               >
-                Logo
+                <Logo />
               </Text>
               <CloseButton
                 display={{ base: "flex", md: "none" }}

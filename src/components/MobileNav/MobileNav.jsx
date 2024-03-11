@@ -9,6 +9,7 @@ import {
 import { FiMenu } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { PopoverBox } from "../PopoverBox/PopoverBox";
+import { Logo } from "../Logo/Logo";
 
 export function MobileNav({ onOpen }) {
   return (
@@ -36,7 +37,7 @@ export function MobileNav({ onOpen }) {
         fontFamily="monospace"
         fontWeight="bold"
       >
-        <Link to="/">Logo</Link>
+        <Link to="/"><Logo /></Link>
       </Text>
       <HStack display={{ base: "flex", md: "none" }}>
         <PopoverBox position="bottom" justify="space-between" />

@@ -71,34 +71,48 @@ export function Home() {
     }
   }, [auth.currentUser]);
   return (
-    <Container maxW={"7xl"} height={"100vh"}>
+    <Container maxW={"7xl"} height={{base:"auto",md:"100vh"}}>
       <Stack
         align={"center"}
         spacing={{ base: 8, md: 10 }}
-        py={{ base: 4, md: 28 }}
+        py={{ base: 4, md: 20 }}
         direction={{ base: "column", md: "row" }}
         
       >
+        <Box
+      p={8}
+      bg="rgba(255, 255, 255, 0.15)" // Adjust opacity as needed
+      borderRadius={"30"}
+      boxShadow="0 8px 32px 0 rgba( 31, 38, 135, 0.37 )"
+      backdropFilter="blur( 10.0px )"
+      border="1px solid rgba( 255, 255, 255, 0.18 )" // Adjust opacity and blur as needed
+      maxW={{ base: "100%", sm: "80%", md: "70%", lg: "60%" }} // Adjust width for different screen sizes
+      mx="auto" // Center the box horizontally
+    >
         <Stack flex={1} spacing={{ base: 5, md: 10 }}>
-          <Heading
-            fontWeight={600}
-            fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
-            lineHeight={"110%"}
-          >
-            noHunger{" "}
-            <Text as={"span"} color={"orange.400"}>
-              made easy
-            </Text>
-          </Heading>
-          <Text color={"black"} maxW={"3xl"}>
-            The "noHunger" application's motive is to address and combat the
-            critical issue of hunger and food insecurity. Its primary goal is to
-            reduce and eventually eliminate hunger by connecting individuals or
-            organizations who have excess food with those who are in need of it.
-            Here are some key aspects of the "noHunger" application's motive
-          </Text>
+        
+      <Heading
+        fontWeight={600}
+        fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
+        lineHeight={"110%"}
+        color="white"
+        mb={4}
+      >
+        ShareAPlate{" :) "}
+        <Text as={"span"} color={"orange.400"}>
+         together we eat
+        </Text>
+      </Heading>
+      <Text color={"white"} maxW={"3xl"}>
+        The "noHunger" application's motive is to address and combat the
+        critical issue of hunger and food insecurity. Its primary goal is to
+        reduce and eventually eliminate hunger by connecting individuals or
+        organizations who have excess food with those who are in need of it.
+        Here are some key aspects of the "noHunger" application's motive
+      </Text>
+    
 
-          <Stack spacing={6} direction={"row"}>
+          <Stack spacing={6} direction={{base:"column",md:"row"}}>
             <Neumorphic
               
               rounded={"full"}
@@ -122,7 +136,9 @@ export function Home() {
       </Neumorphic>
            
           </Stack>
+          
         </Stack>
+        </Box>
         {/* <Flex w={"full"}>
           <Illustration
             height={{ sm: "24rem", lg: "28rem" }}

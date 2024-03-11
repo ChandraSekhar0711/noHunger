@@ -10,6 +10,7 @@ export function Neumorphic({ children, ...rest }){
       rounded="full"
       px={6}
       bg={backgroundColor}
+      minW="unset"
       color="gray.800"
       _hover={{ transform: 'translateY(-2px)', boxShadow: 'none' }}
       _active={{ transform: 'translateY(1px)', boxShadow: 'none' }}
