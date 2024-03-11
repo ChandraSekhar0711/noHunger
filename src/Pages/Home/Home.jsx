@@ -21,7 +21,8 @@ import { useGeoLocation } from "@/hooks/useGeoLocation";
 
 import { AuthAPI } from "@/api/auth";
 import { setUser } from "@/store/auth/auth-slice";
-import { Fab } from "ui-neumorphism";
+import { Neumorphic } from "./Neumorphic";
+// import { Fab } from "ui-neumorphism";
 
 export function Home() {
   const navigate = useNavigate();
@@ -43,15 +44,15 @@ export function Home() {
 
     async function accessNotifications() {
       const notificationPermission = await Permissions.notifications();
-      if (notificationPermission === "granted") {
-        // eslint-disable-next-line no-unused-vars
-        const notification = new Notification("Hello, World!", {
-          body: "Thank you for granting the permissions.",
-          icon: noHunger,
-        });
-      } else {
-        console.log("permissions denied");
-      }
+      // if (notificationPermission === "granted") {
+      //   // eslint-disable-next-line no-unused-vars
+      //   const notification = new Notification("Hello, World!", {
+      //     body: "Thank you for granting the permissions.",
+      //     icon: noHunger,
+      //   });
+      // } else {
+      //   console.log("permissions denied");
+      // }
     }
 
     accessNotifications();
@@ -70,12 +71,13 @@ export function Home() {
     }
   }, [auth.currentUser]);
   return (
-    <Container maxW={"7xl"}>
+    <Container maxW={"7xl"} height={"100vh"}>
       <Stack
         align={"center"}
         spacing={{ base: 8, md: 10 }}
-        py={{ base: 20, md: 28 }}
+        py={{ base: 4, md: 28 }}
         direction={{ base: "column", md: "row" }}
+        
       >
         <Stack flex={1} spacing={{ base: 5, md: 10 }}>
           <Heading
@@ -88,7 +90,7 @@ export function Home() {
               made easy
             </Text>
           </Heading>
-          <Text color={"gray.500"} maxW={"3xl"}>
+          <Text color={"black"} maxW={"3xl"}>
             The "noHunger" application's motive is to address and combat the
             critical issue of hunger and food insecurity. Its primary goal is to
             reduce and eventually eliminate hunger by connecting individuals or
@@ -97,28 +99,28 @@ export function Home() {
           </Text>
 
           <Stack spacing={6} direction={"row"}>
-            <Button
+            <Neumorphic
               
               rounded={"full"}
               px={6}
               colorScheme={"orange"}
               bg={"orange.400"}
-              _hover={{ bg: "orange.500" }}
+              
               onClick={() => navigate("/Requests")}
             >
               Explore Requests
-            </Button>
-            <Button
+            </Neumorphic>
+            {/* <Button
               rounded={"full"}
               px={6}
               onClick={() => navigate("/CreatePost")}
             >
               Create Request
-            </Button>
-
-            <Fab color='var(--primary)'>
-  <span style={{ fontSize: '30px', margin: '2px 0px 0px 2px' }}>&#43;</span>
-</Fab>
+            </Button> */}
+            <Neumorphic onClick={() => navigate("/CreatePost")} color="white">
+        Create Request
+      </Neumorphic>
+           
           </Stack>
         </Stack>
         {/* <Flex w={"full"}>

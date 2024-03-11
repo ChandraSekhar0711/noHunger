@@ -1,6 +1,6 @@
 //import { DisplayFakeRequests } from "@/api/DisplayRequests";
 import { RequestList } from "@/Containers/RequestsList/RequestList";
-import { Flex, SimpleGrid } from "@chakra-ui/react";
+import { Box, Container, Flex, SimpleGrid } from "@chakra-ui/react";
 
 import blob from "@/assets/blob.svg";
 import { postsAPI } from "@/api/postAPI";
@@ -35,13 +35,18 @@ export default function DisplayRequests() {
   //console.log(List);
   return (
     <>
+    
       {post.length === 0 ? (
-        <Flex justify="center" p="20">
+        <Box height={"100vh"}>
+          <Flex justify="center" p="20" >
           <span>
             You do not have any posts, <Link to="/CreatePost">Create One</Link>{" "}
           </span>
         </Flex>
+        </Box>
+        
       ) : (
+        
         <SimpleGrid
           spacing={4}
           templateColumns={{
@@ -53,6 +58,7 @@ export default function DisplayRequests() {
         >
           <RequestList list={post} />
         </SimpleGrid>
+      
       )}
     </>
   );

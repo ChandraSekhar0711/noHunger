@@ -26,7 +26,7 @@ export function HamburgerMenu() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+    <Box px={4}>
       <HeadBarContent
         onClose={() => onClose}
         display={{ base: "none", md: "flex" }}

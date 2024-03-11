@@ -10,19 +10,26 @@ import {
   Button,
   Badge,
   useColorModeValue,
+  Container,
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 
 export default function Profile() {
   const user = useSelector((store) => store.authSlice.auth.user);
   return (
+    <Container height={"100vh"}>
+
+    
     <Center py={6} minH={{ base: "70vh", md: "90vh" }}>
       <Box
         maxW={"350px"}
         w={"full"}
-        bg={useColorModeValue("white", "gray.900")}
-        boxShadow={"2xl"}
+        
         rounded={"lg"}
+        bg="rgba(255, 255, 255, 0.15)"
+        boxShadow="0 8px 32px 0 rgba( 31, 38, 135, 0.37 )"
+        backdropFilter="blur( 10.0px )"
+        border="1px solid rgba( 255, 255, 255, 0.18 )"
         p={7}
         textAlign={"center"}
       >
@@ -49,18 +56,18 @@ export default function Profile() {
         </Text>
         <Text
           textAlign={"center"}
-          color={useColorModeValue("gray.700", "gray.400")}
+          
           px={3}
         >
           Actress, musician, songwriter and artist. PM for work inquires or{" "}
-          <Text color={"blue.400"}>#tag</Text> me in your posts
+          <Text >#tag</Text> me in your posts
         </Text>
 
         <Stack align={"center"} justify={"center"} direction={"row"} mt={6}>
           <Badge
             px={2}
             py={1}
-            bg={useColorModeValue("gray.50", "gray.800")}
+           
             fontWeight={"400"}
           >
             #art
@@ -68,7 +75,7 @@ export default function Profile() {
           <Badge
             px={2}
             py={1}
-            bg={useColorModeValue("gray.50", "gray.800")}
+           
             fontWeight={"400"}
           >
             #photography
@@ -76,7 +83,7 @@ export default function Profile() {
           <Badge
             px={2}
             py={1}
-            bg={useColorModeValue("gray.50", "gray.800")}
+            
             fontWeight={"400"}
           >
             #music
@@ -112,8 +119,10 @@ export default function Profile() {
           >
             Follow
           </Button>
+
         </Stack>
       </Box>
     </Center>
+    </Container>
   );
 }

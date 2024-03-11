@@ -21,6 +21,7 @@ import { useNavigate } from "react-router-dom";
 import { store } from "@/store";
 import { RequestsApi } from "@/api/requests";
 import { sweetAlert } from "@/utils/sweetAlert";
+import { NeumorphicForm } from "./NeumorphicForm";
 
 //import { navigate } from "vite-plugin-ssr/client/router";
 export default function CreatePost() {
@@ -73,9 +74,10 @@ export default function CreatePost() {
         borderWidth="1px"
         borderRadius="md"
         minW={{ base: "90%", md: "90vh" }}
-        backdropFilter="blur(9px) saturate(200%)"
-        backgroundColor="rgba(17, 25, 40, 0.62)"
-        border="1px solid rgba(255, 255, 255, 0.125)"
+        bg="rgba(255, 255, 255, 0.15)"
+        boxShadow="0 8px 32px 0 rgba( 31, 38, 135, 0.37 )"
+        backdropFilter="blur( 10.0px )"
+        border="1px solid rgba( 255, 255, 255, 0.18 )"
         color="white"
       >
         <form onSubmit={handleSubmit}>
@@ -159,6 +161,7 @@ export default function CreatePost() {
           </Stack>
         </form>
       </Box>
+      {/* <NeumorphicForm /> */}
     </Center>
   );
 }
