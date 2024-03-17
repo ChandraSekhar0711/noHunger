@@ -8,6 +8,7 @@ import {
   Button,
   Stack,
   Text,
+  useColorMode,
 } from "@chakra-ui/react";
 
 import { getAuth } from "firebase/auth";
@@ -28,6 +29,7 @@ export function Home() {
   const navigate = useNavigate();
   const auth = getAuth();
   const dispatch = useDispatch();
+  const { colorMode, toggleColorMode } = useColorMode();
   // const user = useSelector((store) => store.authSlice.auth.user);
   const { location } = useGeoLocation();
   localStorage.setItem("geolocationPermission", location.loaded);
@@ -84,7 +86,7 @@ export function Home() {
       bg="rgba(255, 255, 255, 0.15)" // Adjust opacity as needed
       borderRadius={"30"}
       boxShadow="0 8px 32px 0 rgba( 31, 38, 135, 0.37 )"
-      backdropFilter="blur( 10.0px )"
+     
       border="1px solid rgba( 255, 255, 255, 0.18 )" // Adjust opacity and blur as needed
       maxW={{ base: "100%", sm: "80%", md: "70%", lg: "60%" }} // Adjust width for different screen sizes
       mx="auto" // Center the box horizontally
@@ -95,7 +97,7 @@ export function Home() {
         fontWeight={600}
         fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
         lineHeight={"110%"}
-        color="white"
+        color={colorMode === "light" ? "gray.900" : "gray.400"}
         mb={4}
       >
         ShareAPlate{" :) "}
@@ -103,7 +105,7 @@ export function Home() {
          together we eat
         </Text>
       </Heading>
-      <Text color={"white"} maxW={"3xl"}>
+      <Text color={"gray.400"} maxW={"3xl"}>
         The "noHunger" application's motive is to address and combat the
         critical issue of hunger and food insecurity. Its primary goal is to
         reduce and eventually eliminate hunger by connecting individuals or

@@ -93,14 +93,14 @@ export function PopoverBox({ position, justify }) {
           justifyContent={justify}
           pb={4}
         >
-          {/* <IconButton
+          <IconButton
             icon={colorMode === "light" ? moon : sun}
             onClick={toggleColorMode}
             h="12"
             w="12"
             borderRadius="full"
             variant="ghost"
-          /> */}
+          />
 
           <Button colorScheme="green">
             <Link to={"#"} onClick={logout}>

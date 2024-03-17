@@ -8,15 +8,12 @@ export function Menu({ icon, name, url, ...rest }) {
       <Flex
         align="center"
         p="2"
-        mx="4"
-        borderRadius="lg"
+        mx={"3"}
+        maxW={"fit-content"}
         role="group"
         cursor="pointer"
-        rounded={"md"}
-        _hover={{
-          textDecoration: "none",
-          bg: useColorModeValue("gray.200", "gray.700"),
-        }}
+       
+        
         {...rest}
       >
         {icon && (
