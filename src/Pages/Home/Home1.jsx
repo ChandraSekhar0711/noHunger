@@ -1,4 +1,3 @@
-import { Illustration } from "@/components/Illustration/Illustration";
 import {
   Box,
   Button,
@@ -8,6 +7,7 @@ import {
   Image,
   Stack,
   Text,
+  useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { getAuth } from "firebase/auth";
@@ -17,10 +17,12 @@ import noHunger from "@/assets/noHunger.jpeg";
 import { Permissions } from "@/utils/Permissions";
 import { useNavigate } from "react-router-dom";
 import { useGeoLocation } from "@/hooks/useGeoLocation";
-
+import donateImg from "@/assets/donate.jpg"
+import { Neumorphic } from "./Neumorphic";
 export function Home1() {
   const navigate = useNavigate();
   const auth = getAuth();
+  const { colorMode, toggleColorMode } = useColorMode();
   const user = useSelector((store) => store.authSlice.auth.user);
   const { location } = useGeoLocation();
   localStorage.setItem("geolocationPermission", location.loaded);
@@ -68,6 +70,7 @@ export function Home1() {
             fontWeight={600}
             fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
             lineHeight={"110%"}
+            color={colorMode === "light" ? "gray.900" : "gray.400"}
           >
             noHunger{" "}
             <Text as={"span"} color={"orange.400"}>
@@ -82,23 +85,27 @@ export function Home1() {
             Here are some key aspects of the "noHunger" application's motive
           </Text>
           <Stack spacing={6} direction={"row"}>
-            <Button
+          <Neumorphic
+              
               rounded={"full"}
               px={6}
               colorScheme={"orange"}
               bg={"orange.400"}
-              _hover={{ bg: "orange.500" }}
+              
               onClick={() => navigate("/Requests")}
             >
               Explore Requests
-            </Button>
-            <Button
+            </Neumorphic>
+            {/* <Button
               rounded={"full"}
               px={6}
               onClick={() => navigate("/CreatePost")}
             >
               Create Request
-            </Button>
+            </Button> */}
+            <Neumorphic onClick={() => navigate("/CreatePost")} color="white">
+        Create Request
+      </Neumorphic>
           </Stack>
         </Stack>
         {/* <Flex w={"full"}>
@@ -126,14 +133,14 @@ export function Home1() {
               top={'50%'}
               transform={'translateX(-50%) translateY(-50%)'}
             /> */}
-            <Image
+            {/* <Image
               alt={"Hero Image"}
               fit={"cover"}
               position={"center"}
               w={"100%"}
               h={"100%"}
-              src={noHunger}
-            />
+              src={donateImg}
+            /> */}
           </Box>
         </Flex>
       </Stack>

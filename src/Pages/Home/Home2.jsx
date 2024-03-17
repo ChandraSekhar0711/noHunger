@@ -1,4 +1,3 @@
-import { Blob } from "@/components/Blob/Blob";
 import { useGeoLocation } from "@/hooks/useGeoLocation";
 import {
   Container,

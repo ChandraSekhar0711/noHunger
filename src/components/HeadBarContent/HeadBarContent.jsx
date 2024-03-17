@@ -4,6 +4,7 @@ import { Menu } from "../Menu/Menu";
 import { FiCompass, FiHome, FiStar } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { Logo } from "../Logo/Logo";
+import { Neumorphic } from "@/Pages/Home/Neumorphic";
 
 const LinkItems = [
   { name: "Home", icon: FiHome, url: "/" },
@@ -21,12 +22,18 @@ export function HeadBarContent({ ...rest }) {
 
       <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
         {LinkItems.map((link) => (
-          <Menu
+          <Neumorphic rounded={"lg"}
+          px={6}
+          colorScheme={"orange.400"}
+          bg={"orange.400"}>
+            <Menu
             key={link.name}
             icon={link.icon}
             name={link.name}
             url={link.url}
           />
+          </Neumorphic>
+          
         ))}
       </HStack>
       <Flex alignItems="center">

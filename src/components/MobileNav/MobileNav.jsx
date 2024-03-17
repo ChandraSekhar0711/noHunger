@@ -28,6 +28,7 @@ export function MobileNav({ onOpen }) {
         display={{ base: "flex", md: "none" }}
         onClick={onOpen}
         variant="outline"
+        color={"black"}
         aria-label="open menu"
         icon={<FiMenu />}
       />
