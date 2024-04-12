@@ -16,9 +16,11 @@ import {
 } from "@chakra-ui/react";
 import { BiLike, BiPhone, BiSolidNavigation } from "react-icons/bi";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { Link, useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 export function RequestList({ list }) {
+  const navigate = useNavigate();
   const { location } = useGeoLocation();
 
   function Direction(lat, lon) {
@@ -45,6 +47,7 @@ export function RequestList({ list }) {
             border="1px solid rgba(255, 255, 255, 0.125)"
             color="white"
             maxW="md"
+            onClick={()=>navigate("/RequestDetails/"+request.id)}
           >
             <CardHeader>
               <Flex spacing="4">

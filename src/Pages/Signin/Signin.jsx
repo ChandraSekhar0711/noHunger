@@ -48,8 +48,9 @@ export function Signin() {
   };
 
   const login = async (e) => {
-    console.log("login in");
     e.preventDefault();
+    console.log("login in");
+
     try {
       const user = await AuthAPI.signin(email, password);
       dispatch(setUser(user));
@@ -77,7 +78,7 @@ export function Signin() {
       flexDirection="column"
       width="100wh"
       height="auto"
-      
+
       justifyContent="center"
       alignItems="center"
     >
@@ -87,55 +88,54 @@ export function Signin() {
         justifyContent="center"
         alignItems="center"
       >
-        
-        <Box minW={{ base: "90%", md: "468px" }}>
-          <form onSubmit={login}>
-            <Stack
-              spacing={4}
-              p="1rem"
-             
-              boxShadow="md"
-            >
-              <FormControl>
-                <InputGroup>
-                  <InputLeftElement pointerEvents="none" />
-                  <Input
-                    type="text"
-                    placeholder="email address"
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </InputGroup>
-              </FormControl>
-              <FormControl>
-                <InputGroup>
-                  <InputLeftElement pointerEvents="none" color="gray.300" />
-                  <Input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Password"
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <InputRightElement width="4.5rem">
-                    <Button h="1.75rem" size="sm" onClick={handleShowClick}>
-                      {showPassword ? "Hide" : "Show"}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
 
-                <FormHelperText textAlign="right">
-                  <Link onClick={resetPassword}>forgot password?</Link>
-                </FormHelperText>
-              </FormControl>
-              <Button
-                borderRadius={0}
-                type="submit"
-                variant="solid"
-                colorScheme="teal"
-                width="full"
-              >
-                Login
-              </Button>
-            </Stack>
-          </form>
+        <Box minW={{ base: "90%", md: "468px" }}>
+          <Stack
+            spacing={4}
+            p="1rem"
+
+            boxShadow="md"
+          >
+            <FormControl>
+              <InputGroup>
+                <InputLeftElement pointerEvents="none" />
+                <Input
+                  type="text"
+                  placeholder="email address"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </InputGroup>
+            </FormControl>
+            <FormControl>
+              <InputGroup>
+                <InputLeftElement pointerEvents="none" color="gray.300" />
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <InputRightElement width="4.5rem">
+                  <Button h="1.75rem" size="sm" onClick={handleShowClick}>
+                    {showPassword ? "Hide" : "Show"}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+
+              <FormHelperText textAlign="right">
+                <Link onClick={resetPassword}>forgot password?</Link>
+              </FormHelperText>
+            </FormControl>
+            <Button
+              borderRadius={0}
+              type="button"
+              onClick={login}
+              variant="solid"
+              colorScheme="teal"
+              width="full"
+            >
+              Login
+            </Button>
+          </Stack>
         </Box>
         <GoogleSignInForm onSubmit={googleSignIn} />
       </Stack>

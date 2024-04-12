@@ -4,6 +4,7 @@ import { Button, Center, Text } from "@chakra-ui/react";
 export function GoogleSignInForm({ onSubmit }) {
   const googleSignIn = async (e) => {
     e.preventDefault();
+    console.log("trying to login")
     onSubmit();
   };
   return (

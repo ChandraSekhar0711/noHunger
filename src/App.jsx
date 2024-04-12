@@ -9,6 +9,7 @@ import { Home1 } from "./Pages/Home/Home1";
 import donateImg from "@/assets/donate.jpg"
 import { Home4 } from "./Pages/Home/Home4";
 import { Home2 } from "./Pages/Home/Home2";
+import { RequestDetails } from "./Pages/RequestDetails/RequestDetails";
 const DisplayRequests = lazy(() => import("./Pages/DisplayRequests/DisplayRequests"));
 const CreatePost = lazy(() => import("./Pages/CreatePost/CreatePost"));
 const ContactUs = lazy(() => import("./Pages/ContactUs/ContactUs"));
@@ -33,10 +34,14 @@ const getbackgroundImage = ()=>{
       <Suspense fallback = {<p>Loading...</p>}>
     
       <Routes>
-        <Route path="/" exact element={<Home1 />} />
+        <Route path="/" exact element={<Home />} />
         <Route path="/Requests" element={<DisplayRequests />} />
         <Route path="/CreatePost" element={<CreatePost />} />
         <Route path="/ContactUs" element={<ContactUs />} />
+        <Route path="/Requestdetails/:requestId" element={<RequestDetails/>} />
+        <Route path="/Home1" element={<Home1 />} />
+        <Route path="/Home2" element={<Home2 />} />
+        <Route path="/Home4" element={<Home4 />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
