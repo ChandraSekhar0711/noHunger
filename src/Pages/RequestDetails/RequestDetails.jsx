@@ -1,5 +1,6 @@
 import BreadCrumb from '@/components/BreadCrumb/BreadCrumb';
 import { Card } from '@/components/Card/Card';
+import { Card1 } from '@/components/Card/Card1';
 import { Center, Stack } from '@chakra-ui/react';
 import React from 'react'
 import { useSelector } from 'react-redux';

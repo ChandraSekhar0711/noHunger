@@ -1,4 +1,4 @@
-import { Box, Image, Badge, Text, Flex, Spacer, Avatar } from '@chakra-ui/react';
+import { Box, Image, Badge, Text, Flex, Spacer, Avatar, Button } from '@chakra-ui/react';
 import React from 'react'
 
 export function Card({requestorDetails}) {
@@ -33,6 +33,21 @@ export function Card({requestorDetails}) {
               </Text>
             </Box>
           </Box>
+          <Button
+                mt={10}
+                w={'full'}
+                bg={'green.400'}
+                color={'white'}
+                rounded={'xl'}
+                
+                _hover={{
+                  bg: 'green.500',
+                }}
+                _focus={{
+                  bg: 'green.500',
+                }}>
+                Request
+                </Button>
         </Box>
       );
 }
