@@ -7,10 +7,11 @@ const colors = {
   },
   secondary: "#0F1B61",
   black: "#000000",
+  heading: "#204B63"
 };
 
 const fonts = {
-  heading: `'Poppins', sans-serif`,
+  heading: `'Poppins', sans-serif, Jost`,
   body: `'Inter', sans-serif`,
 };
 

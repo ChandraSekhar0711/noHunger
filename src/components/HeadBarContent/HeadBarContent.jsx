@@ -18,21 +18,20 @@ export function HeadBarContent({ ...rest }) {
         <Link to="/">
           <Logo />
         </Link>
+        
       </Text>
 
-      <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
+      <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }} w={500} h={25}>
         {LinkItems.map((link) => (
-          <Neumorphic rounded={"lg"}
-          px={6}
-          colorScheme={"orange.400"}
-          bg={"orange.400"}>
+          
+       
             <Menu
             key={link.name}
             icon={link.icon}
             name={link.name}
             url={link.url}
           />
-          </Neumorphic>
+        
           
         ))}
       </HStack>

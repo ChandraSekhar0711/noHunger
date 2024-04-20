@@ -12,7 +12,7 @@ export function Menu({ icon, name, url, ...rest }) {
         maxW={"fit-content"}
         role="group"
         cursor="pointer"
-       
+        fontFamily={"Jost"} letterSpacing={5}
         
         {...rest}
       >
@@ -20,9 +20,8 @@ export function Menu({ icon, name, url, ...rest }) {
           <Icon
             mr="4"
             fontSize="16"
-            _groupHover={{
-              color: "white",
-            }}
+            color={useColorModeValue("gray.500", "gray.400")}
+            _groupHover={{ color: "black" }}
             as={icon}
           />
         )}

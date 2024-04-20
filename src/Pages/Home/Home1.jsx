@@ -1,28 +1,26 @@
 import {
   Box,
-  Button,
-  Container,
+  Center,
   Flex,
-  Heading,
-  Image,
-  Stack,
-  Text,
-  useColorMode,
-  useColorModeValue,
+  VStack
 } from "@chakra-ui/react";
 import { getAuth } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import noHunger from "@/assets/noHunger.jpeg";
+
 import { Permissions } from "@/utils/Permissions";
 import { useNavigate } from "react-router-dom";
 import { useGeoLocation } from "@/hooks/useGeoLocation";
 import donateImg from "@/assets/donate.jpg"
 import { Neumorphic } from "./Neumorphic";
+import { DownloadIcon } from "@chakra-ui/icons";
+import { Landing } from "@/Features/Landing";
+import { About } from "@/Features/About";
+import { Working } from "@/Features/Working";
 export function Home1() {
   const navigate = useNavigate();
   const auth = getAuth();
-  const { colorMode, toggleColorMode } = useColorMode();
+
   const user = useSelector((store) => store.authSlice.auth.user);
   const { location } = useGeoLocation();
   localStorage.setItem("geolocationPermission", location.loaded);
@@ -58,92 +56,14 @@ export function Home1() {
     }
   }, [auth.currentUser]);
   return (
-    <Container maxW={"7xl"}>
-      <Stack
-        align={"center"}
-        spacing={{ base: 8, md: 10 }}
-        py={{ base: 20, md: 28 }}
-        direction={{ base: "column", md: "row" }}
-      >
-        <Stack flex={1} spacing={{ base: 5, md: 10 }}>
-          <Heading
-            fontWeight={600}
-            fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
-            lineHeight={"110%"}
-            color={colorMode === "light" ? "gray.900" : "gray.400"}
-          >
-            noHunger{" "}
-            <Text as={"span"} color={"orange.400"}>
-              made easy
-            </Text>
-          </Heading>
-          <Text color={"gray.500"} maxW={"3xl"}>
-            The "noHunger" application's motive is to address and combat the
-            critical issue of hunger and food insecurity. Its primary goal is to
-            reduce and eventually eliminate hunger by connecting individuals or
-            organizations who have excess food with those who are in need of it.
-            Here are some key aspects of the "noHunger" application's motive
-          </Text>
-          <Stack spacing={6} direction={"row"}>
-          <Neumorphic
-              
-              rounded={"full"}
-              px={6}
-              colorScheme={"orange"}
-              bg={"orange.400"}
-              
-              onClick={() => navigate("/Requests")}
-            >
-              Explore Requests
-            </Neumorphic>
-            {/* <Button
-              rounded={"full"}
-              px={6}
-              onClick={() => navigate("/CreatePost")}
-            >
-              Create Request
-            </Button> */}
-            <Neumorphic onClick={() => navigate("/CreatePost")} color="white">
-        Create Request
-      </Neumorphic>
-          </Stack>
-        </Stack>
-        {/* <Flex w={"full"}>
-          <Illustration
-            height={{ sm: "24rem", lg: "28rem" }}
-            mt={{ base: 12, sm: 16 }}
-          />
-        </Flex> */}
-        <Flex flex={1}>
-          <Box
-            position={"relative"}
-            rounded={"2xl"}
-            boxShadow={"2xl"}
-            overflow={"hidden"}
-          >
-            {/* <IconButton
-              aria-label={'Play Button'}
-              variant={'ghost'}
-              _hover={{ bg: 'transparent' }}
-              icon={<PlayIcon w={12} h={12} />}
-              size={'lg'}
-              color={'white'}
-              position={'absolute'}
-              left={'50%'}
-              top={'50%'}
-              transform={'translateX(-50%) translateY(-50%)'}
-            /> */}
-            {/* <Image
-              alt={"Hero Image"}
-              fit={"cover"}
-              position={"center"}
-              w={"100%"}
-              h={"100%"}
-              src={donateImg}
-            /> */}
-          </Box>
-        </Flex>
-      </Stack>
-    </Container>
+    <Box>
+      <VStack gap={{ base: 0, md: 15 }}>
+        <Landing />
+        <About />
+        <Working />
+      </VStack>
+
+    </Box >
+
   );
 }

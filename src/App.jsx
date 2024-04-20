@@ -28,8 +28,7 @@ const getbackgroundImage = ()=>{
   }
 }
   return (
-    <Box backgroundImage={getbackgroundImage()} backgroundSize="cover"
-    backgroundRepeat="no-repeat" height={"100vh"}>
+    <Box  m={{base:2,md:5}}>
       <HamburgerMenu />
       <Suspense fallback = {<p>Loading...</p>}>
     
@@ -39,9 +38,6 @@ const getbackgroundImage = ()=>{
         <Route path="/CreatePost" element={<CreatePost />} />
         <Route path="/ContactUs" element={<ContactUs />} />
         <Route path="/Requestdetails/:requestId" element={<RequestDetails/>} />
-        <Route path="/Home1" element={<Home1 />} />
-        <Route path="/Home2" element={<Home2 />} />
-        <Route path="/Home4" element={<Home4 />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
