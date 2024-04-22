@@ -12,11 +12,7 @@ export default function BreadCrumb(props) {
         </BreadcrumbItem>
 
         <BreadcrumbItem isCurrentPage>
-          <BreadcrumbLink >{props.path}</BreadcrumbLink>
-        </BreadcrumbItem>
-
-        <BreadcrumbItem isCurrentPage>
-          <BreadcrumbLink >{props.requestId}</BreadcrumbLink>
+          <BreadcrumbLink >{props.path}{" "}({props.requestId})</BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
 

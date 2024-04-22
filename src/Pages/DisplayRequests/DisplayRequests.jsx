@@ -1,6 +1,6 @@
 //import { DisplayFakeRequests } from "@/api/DisplayRequests";
 import { RequestList } from "@/Containers/RequestsList/RequestList";
-import { Box, Container, Flex, SimpleGrid } from "@chakra-ui/react";
+import { Box, Center, Container, Flex, SimpleGrid, VStack } from "@chakra-ui/react";
 
 import blob from "@/assets/blob.svg";
 import { postsAPI } from "@/api/postAPI";
@@ -46,18 +46,11 @@ export default function DisplayRequests() {
         </Box>
         
       ) : (
-        
-        <SimpleGrid
-          spacing={4}
-          templateColumns={{
-            base: "repeat(auto-fill, minmax(300px, 1fr))",
-            md: "repeat(auto-fill, minmax(350px, 1fr))",
-          }}
-          p={5}
-          
-        >
+        <Center  width="full" p={{base:5,md:50}}>
           <RequestList list={post} />
-        </SimpleGrid>
+        </Center>
+          
+        
       
       )}
     </>

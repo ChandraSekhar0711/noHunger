@@ -10,6 +10,7 @@ import donateImg from "@/assets/donate.jpg"
 import { Home4 } from "./Pages/Home/Home4";
 import { Home2 } from "./Pages/Home/Home2";
 import { RequestDetails } from "./Pages/RequestDetails/RequestDetails";
+import { Loading } from "./components/Loading/Loading";
 const DisplayRequests = lazy(() => import("./Pages/DisplayRequests/DisplayRequests"));
 const CreatePost = lazy(() => import("./Pages/CreatePost/CreatePost"));
 const ContactUs = lazy(() => import("./Pages/ContactUs/ContactUs"));
@@ -30,7 +31,7 @@ const getbackgroundImage = ()=>{
   return (
     <Box  m={{base:2,md:5}}>
       <HamburgerMenu />
-      <Suspense fallback = {<p>Loading...</p>}>
+      <Suspense fallback = {<Loading/>}>
     
       <Routes>
         <Route path="/" exact element={<Home />} />

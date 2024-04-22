@@ -4,6 +4,7 @@ import {
   HStack,
   IconButton,
   Text,
+  useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { FiMenu } from "react-icons/fi";
@@ -12,6 +13,7 @@ import { PopoverBox } from "../PopoverBox/PopoverBox";
 import { Logo } from "../Logo/Logo";
 
 export function MobileNav({ onOpen }) {
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -28,9 +30,10 @@ export function MobileNav({ onOpen }) {
         display={{ base: "flex", md: "none" }}
         onClick={onOpen}
         variant="outline"
-        color={"black"}
+        color={colorMode === "light" ? "secondary" : "Light"}
         aria-label="open menu"
         icon={<FiMenu />}
+        
       />
       <Text
         display={{ base: "flex", md: "none" }}
