@@ -46,7 +46,7 @@ export function Working() {
     const process = (
         <Box >
             <VStack>
-                <Accordion allowToggle >
+                <Accordion allowToggle defaultIndex={0}>
                     {
                         steps.map((step, index) => {
                             return (

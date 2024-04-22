@@ -23,6 +23,7 @@ export function Menu({ icon, name, url, ...rest }) {
             color={useColorModeValue("gray.500", "gray.400")}
             _groupHover={{ color: "black" }}
             as={icon}
+            fontWeight={"bold"}
           />
         )}
         {name}

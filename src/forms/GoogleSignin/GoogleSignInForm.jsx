@@ -1,5 +1,5 @@
 import { FcGoogle } from "react-icons/fc";
-import { Button, Center, Text } from "@chakra-ui/react";
+import { Button, ButtonGroup, Center, Text } from "@chakra-ui/react";
 
 export function GoogleSignInForm({ onSubmit }) {
   const googleSignIn = async (e) => {
@@ -8,17 +8,16 @@ export function GoogleSignInForm({ onSubmit }) {
     onSubmit();
   };
   return (
-    <Center p={8}>
-      <Button
-        w={"full"}
-        maxW={"md"}
-        variant={"outline"}
+    <ButtonGroup variant="secondary" spacing="4">
+
+      <Button flexGrow={1} variant={"outline"}
         leftIcon={<FcGoogle />}
+        onClick={googleSignIn}
+        color={"primary.dark"}
       >
-        <Center>
-          <Text onClick={googleSignIn}> Sign in with Google</Text>
-        </Center>
+        Sign in with Google
       </Button>
-    </Center>
+
+    </ButtonGroup>
   );
 }

@@ -29,7 +29,7 @@ import { setUser } from '@/store/auth/auth-slice';
 import { LockIcon, UnlockIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { BsLock, BsPerson } from 'react-icons/bs';
 import { BiLock } from 'react-icons/bi';
-export function Signin() {
+export function Signin2() {
     const showToast = sweetAlert();
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
@@ -82,20 +82,18 @@ export function Signin() {
             showToast("error", "Unable to reset password");
         }
     };
-    const backgroundImage = "repeating-linear-gradient(220deg, rgb(0,0,0) 0px, rgb(0,0,0) 19px,transparent 19px, transparent 22px),repeating-linear-gradient(189deg, rgb(0,0,0) 0px, rgb(0,0,0) 19px,transparent 19px, transparent 22px),repeating-linear-gradient(148deg, rgb(0,0,0) 0px, rgb(0,0,0) 19px,transparent 19px, transparent 22px),linear-gradient(90deg, rgb(30, 169, 65),rgb(158, 25, 173));"
     return (
-      <Box bgColor={"red"} h={"100vh"} bgImage={backgroundImage}>
         <Container maxW="lg" py={{ base: '12', md: '24' }} px={{ base: '0', sm: '8' }}>
-            <Stack>
+            <Stack spacing="8">
                 <Stack>
                     <Center>
                         <Logo />
                     </Center>
 
                     <Stack spacing={{ base: '2', md: '3' }} textAlign="center">
-                        <Heading size={{ base: 'xs', md: 'sm' }} color={colorMode === "light" ? "primary.dark" : "Light"}>Log in to your account</Heading>
-                        <Text  color={colorMode === "light" ? "primary.dark" : "Light"}>
-                            Don't have an account? <Link onClick={() => navigate("/Signup")} color="primary.dark" fontWeight={"bold"}>Sign up</Link>
+                        <Heading size={{ base: 'xs', md: 'sm' }}>Log in to your account</Heading>
+                        <Text color="fg.muted">
+                            Don't have an account? <Link onClick={() => navigate("/Signup")}>Sign up</Link>
                         </Text>
                     </Stack>
                 </Stack>
@@ -106,14 +104,11 @@ export function Signin() {
                     bg={{ base: 'transparent', sm: 'bg.surface' }}
                     boxShadow={{ base: 'none', sm: 'md' }}
                     borderRadius={{ base: 'none', sm: 'xl' }}
-    
-                    borderColor="bg.surface"
-                    color={"primary.dark"}
                 >
                     <Stack spacing="6">
                         <Stack spacing="5">
                             <FormControl>
-                                <FormLabel htmlFor="email" color={colorMode === "light" ? "primary.dark" : "Light"} fontWeight={"bold"}>Email</FormLabel>
+                                <FormLabel htmlFor="email">Email</FormLabel>
                                 <InputGroup>
                                
                                 <Input id="email" type="email" onChange={(e) => setEmail(e.target.value)} />
@@ -121,12 +116,12 @@ export function Signin() {
                                 
                             </FormControl>
                             <FormControl>
-                            <FormLabel htmlFor="password" color={colorMode === "light" ? "primary.dark" : "Light"} fontWeight={"bold"} >Password</FormLabel>
+                            <FormLabel htmlFor="password">Password</FormLabel>
                                 <InputGroup>
                                 
                                     <Input id="password" type={showPassword ? "text" : "password"} onChange={(e) => setPassword(e.target.value)} />
                                     <InputRightElement width="4.5rem">
-                                        <Button h="1.75rem" size="sm" onClick={handleShowClick} variant={"solid"}>
+                                        <Button h="1.75rem" size="sm" onClick={handleShowClick} variant={"ghost"}>
                                             {showPassword ?<UnlockIcon /> : <LockIcon />}
                                         </Button>
                                     </InputRightElement>
@@ -138,7 +133,7 @@ export function Signin() {
 
                         <HStack justify="space-between">
                             <Checkbox defaultChecked>Remember me</Checkbox>
-                            <Button variant="text" size="sm" onClick={resetPassword} color={colorMode === "light" ? "primary.dark" : "Light"}>Forgot password?</Button>
+                            <Button variant="text" size="sm" onClick={resetPassword}>Forgot password?</Button>
                         </HStack>
 
                         <Stack spacing="6">
@@ -156,6 +151,5 @@ export function Signin() {
                 </Box>
             </Stack>
         </Container>
-        </Box>
     );
 }

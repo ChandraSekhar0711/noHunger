@@ -6,6 +6,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
+import { firebaseConfig } from '@/config';
 export function RequestDetails() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -22,7 +23,7 @@ export function RequestDetails() {
       const fetchData = async (requestId) => {
         try {
           const response = await axios.get(
-            `https://firestore.googleapis.com/v1/projects/nohungertest/databases/(default)/documents/Requests/${requestId}` // Your API endpoint
+            `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/Requests/${requestId}` // Your API endpoint
           );
           console.log("Api data:",response.data.fields);
           setData(response.data.fields); // Set the retrieved data
