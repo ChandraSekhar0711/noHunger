@@ -83,7 +83,7 @@ export function RequestList({ list }) {
                 <Td textAlign={"center"}>
                   <Text>{request.created_at}</Text>
                 </Td>
-                <Td textAlign={"center"} onClick={() => navigate("/RequestDetails/" + request.id)} > <ExternalLinkIcon /> </Td>
+                <Td textAlign={"center"} onClick={() => navigate("/RequestDetails/" + request.id)} cursor={"pointer"} > <ExternalLinkIcon /> </Td>
               </Tr>
 
               // <Card

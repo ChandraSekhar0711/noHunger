@@ -7,8 +7,9 @@ import { setUser } from "@/store/auth/auth-slice";
 import { useNavigate } from "react-router-dom";
 //import { getAuth, RecaptchaVerifier } from "firebase/auth";
 
-import SignUpForm from "@/forms/signupForm/SignUpForm";
+import {SignUpForm} from "@/forms/signupForm/SignUpForm";
 import { sweetAlert } from "@/utils/sweetAlert";
+
 
 export function Signup() {
   const showToast = sweetAlert();
@@ -29,7 +30,7 @@ export function Signup() {
         "success",
         "Account has been created successfully. Verification link has been sent to registered email"
       );
-      navigate("/Signin");
+      navigate("/");
     } catch (error) {
       console.log("auth fauiled", error);
       showToast("error", "Invalid Credentials");

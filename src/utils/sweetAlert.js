@@ -8,8 +8,8 @@ export function sweetAlert(){
       status: type,
       duration: 2000,
       isClosable: true,
-      variant:"top-accent",
-      position:"top-right",
+      
+      position:"bottom",
      
     });
   }

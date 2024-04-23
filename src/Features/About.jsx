@@ -51,7 +51,7 @@ export function About() {
           {
             visions.map((item) => {
               return (
-                <Box maxW={"xs"} bgGradient={colorMode==="light"?"radial-gradient(circle at 0% 0.5%, rgb(241, 241, 242) 0.1%, rgb(224, 226, 228) 100.2%);":"black"} borderRadius={10}>
+                <Box key={item} maxW={"xs"} bgGradient={colorMode==="light"?"radial-gradient(circle at 0% 0.5%, rgb(241, 241, 242) 0.1%, rgb(224, 226, 228) 100.2%);":"black"} borderRadius={10}>
                   <VStack p={5}>
                     <Heading as='h4' size='md' color={colorMode === "light" ? "secondary" : "Light"}>
                       {item.name}

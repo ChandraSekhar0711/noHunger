@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
-import { Box, Flex, Icon, useColorModeValue } from "@chakra-ui/react";
+import { Box, Flex, Icon, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import { Link } from 'react-router-dom';
 
 export function Menu({ icon, name, url, ...rest }) {
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Link to = {url}>
       <Flex
@@ -13,17 +14,18 @@ export function Menu({ icon, name, url, ...rest }) {
         role="group"
         cursor="pointer"
         fontFamily={"Jost"} letterSpacing={5}
-        
+        color={colorMode === "light" ? "Light" : "primary.dark"}
+        fontWeight={"bold"}
+        fontSize={"lg"}
         {...rest}
       >
         {icon && (
           <Icon
-            mr="4"
-            fontSize="16"
-            color={useColorModeValue("gray.500", "gray.400")}
-            _groupHover={{ color: "black" }}
-            as={icon}
+            mr="2"
             fontWeight={"bold"}
+            _groupHover={{ color: "Light" }}
+            as={icon}
+            
           />
         )}
         {name}

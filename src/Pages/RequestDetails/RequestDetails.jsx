@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { firebaseConfig } from '@/config';
+import { Loading } from '@/components/Loading/Loading';
 export function RequestDetails() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -21,11 +22,13 @@ export function RequestDetails() {
     
     useEffect(() => {
       const fetchData = async (requestId) => {
+        
         try {
           const response = await axios.get(
             `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/Requests/${requestId}` // Your API endpoint
           );
           console.log("Api data:",response.data.fields);
+          
           setData(response.data.fields); // Set the retrieved data
         } catch (error) {
           setError(error); // Set error state if an error occurs
@@ -35,12 +38,18 @@ export function RequestDetails() {
       };
       fetchData(requestId); // Fetch data when component mounts
     },[requestId]);
+
+    if (loading) {
+      return <Loading />; // Display loading component while data is being fetched
+    }
+
   return (
     <Center py={6}>
 
       <Stack direction="column" spacing={2} >
 
         <BreadCrumb path="Request" requestId = {requestId}/>
+        
         { data && <Card requestorDetails={JSON.stringify(data, null, 2)} />}
 
         

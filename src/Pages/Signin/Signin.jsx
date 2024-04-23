@@ -42,7 +42,6 @@ export function Signin() {
     const navigate = useNavigate();
 
     const handleShowClick = () => setShowPassword(!showPassword);
-
     // Google Signin
     const googleSignIn = async () => {
         console.log("user creating");
@@ -85,7 +84,6 @@ export function Signin() {
             showToast("error", "Unable to reset password");
         }
     };
-    const backgroundImage = "repeating-linear-gradient(220deg, rgb(0,0,0) 0px, rgb(0,0,0) 19px,transparent 19px, transparent 22px),repeating-linear-gradient(189deg, rgb(0,0,0) 0px, rgb(0,0,0) 19px,transparent 19px, transparent 22px),repeating-linear-gradient(148deg, rgb(0,0,0) 0px, rgb(0,0,0) 19px,transparent 19px, transparent 22px),linear-gradient(90deg, rgb(30, 169, 65),rgb(158, 25, 173));"
     return (
         <Box >
             <IconButton
