@@ -13,7 +13,7 @@ export function GoogleSignInForm({ onSubmit }) {
       <Button flexGrow={1} variant={"outline"}
         leftIcon={<FcGoogle />}
         onClick={googleSignIn}
-        color={"primary.dark"}
+        
       >
         Sign in with Google
       </Button>
