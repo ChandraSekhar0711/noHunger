@@ -13,7 +13,6 @@ import { RequestDetails } from "./Pages/RequestDetails/RequestDetails";
 import { Loading } from "./components/Loading/Loading";
 const DisplayRequests = lazy(() => import("./Pages/DisplayRequests/DisplayRequests"));
 const CreatePost = lazy(() => import("./Pages/CreatePost/CreatePost"));
-const ContactUs = lazy(() => import("./Pages/ContactUs/ContactUs"));
 const Profile = lazy(() => import("./Pages/Profile/Profile"))
 const PageNotFound = lazy(() => import("./Pages/PageNotFound/PageNotFound"))
 
@@ -24,17 +23,14 @@ export function App() {
     <Box  m={{base:2,md:5}}>
       <HamburgerMenu />
       <Suspense fallback = {<Loading/>}>
-    
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/Requests" element={<DisplayRequests />} />
         <Route path="/CreatePost" element={<CreatePost />} />
-        <Route path="/ContactUs" element={<ContactUs />} />
         <Route path="/Requestdetails/:requestId" element={<RequestDetails/>} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-     
       </Suspense>
     </Box>
   );

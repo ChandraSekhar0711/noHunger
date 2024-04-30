@@ -1,14 +1,16 @@
 import BreadCrumb from '@/components/BreadCrumb/BreadCrumb';
 import { Card } from '@/components/Card/Card';
 import { Card1 } from '@/components/Card/Card1';
-import { Center, Stack, Text } from '@chakra-ui/react';
+import { Box, Center, Container, Stack, Text, useColorMode } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { firebaseConfig } from '@/config';
 import { Loading } from '@/components/Loading/Loading';
+
 export function RequestDetails() {
+  const { colorMode, toggleColorMode } = useColorMode();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -44,16 +46,18 @@ export function RequestDetails() {
     }
 
   return (
-    <Center py={6}>
 
-      <Stack direction="column" spacing={2} >
+<Container maxW="xl" py={{ base: '12', md: '24' }} px={{ base: '0', sm: '8' }} color={colorMode === "light" ? "secondary" : "Light"}>
+  <Stack spacing={6}>
 
-        <BreadCrumb path="Request" requestId = {requestId}/>
-        
-        { data && <Card requestorDetails={JSON.stringify(data, null, 2)} />}
+  <BreadCrumb path="Request" requestId = {requestId}/>
+  
+          { data && <Card1 requestorDetails={JSON.stringify(data, null, 2)} />}
+      
 
-        
-        </Stack>
-    </Center>
+  </Stack>
+
+
+</Container>
   )
 }

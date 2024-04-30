@@ -11,6 +11,7 @@ import {
     Heading,
     HStack,
     IconButton,
+    Image,
     Input,
     InputGroup,
     InputLeftElement,
@@ -29,6 +30,7 @@ import { AuthAPI } from '@/api/auth';
 import { setUser } from '@/store/auth/auth-slice';
 import { LockIcon, UnlockIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { BsFillMoonFill, BsLock, BsPerson, BsSun } from 'react-icons/bs';
+import loginIllustration from "@/assets/Mobile-login-pana.svg"
 import { BiLock } from 'react-icons/bi';
 export function Signin() {
     const showToast = sweetAlert();
@@ -97,7 +99,9 @@ export function Signin() {
                 
                 right={"5"}
             />
-            <Container maxW="lg" py={{ base: '12', md: '24' }} px={{ base: '0', sm: '8' }} color={colorMode === "light" ? "secondary" :"Light"}>
+            <Container maxW="lg" py={{ base: '12', md: '24' }} px={{ base: '0', sm: '8' }} color={colorMode === "light" ? "secondary" : "Light"}
+                
+            >
                 <Stack>
                     <Stack>
                         <Center>
@@ -166,6 +170,8 @@ export function Signin() {
                         </Stack>
                     </Box>
                 </Stack>
+
+                
             </Container>
         </Box>
     );

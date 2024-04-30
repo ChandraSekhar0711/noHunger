@@ -24,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 import { store } from "@/store";
 import { RequestsApi } from "@/api/requests";
 import { sweetAlert } from "@/utils/sweetAlert";
+import { RequestForm } from "@/forms/RequestForm/RequestForm";
 export default function CreatePost() {
   const user = useSelector((store) => store.authSlice.auth.user);
   const { colorMode, toggleColorMode } = useColorMode();
@@ -31,45 +32,50 @@ export default function CreatePost() {
   const showToast = sweetAlert();
   const { location } = useGeoLocation();
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    name: `${user.displayName}`,
-    email: `${user.email}`,
-    mobile: "",
-    food: { type: "snack", quantity: 0 },
-    photoUrl: "",
-    uid: ""
-
-  });
   const dispatch = useDispatch();
+  // const validateForm = (formData) => {
+  //   let valid = true;
+  //   const newErrors = {};
+  //   if (formData.mobile.length !== 10) {
+  //     console.log("Phone number must be 10 digits.");
+  //     newErrors.mobile = "Phone number must be 10 digits.";
+  //     valid = false;
+  //   }
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    console.log(name, ":", value);
-    setFormData({ ...formData, [name]: value });
-  };
+  //   if (formData.food.quantity < 10) {
+  //     console.log("Quantity must be at least 10.");
+  //     newErrors.quantity = "Quantity must be at least 10.";
+  //     valid = false;
+  //   }
 
-  const submitData = async (e) => {
+  //   setErrors(newErrors);
+  //   return valid;
+  // };
 
-    e.preventDefault();
-    setLoading(true)
-    console.log(formData);
-    try {
-      const createRequest = await RequestsApi.createRequest({
-        ...formData,
-        created_at: new Date().toLocaleDateString(),
-        photoUrl: user.photoUrl,
-        uid: user.uid,
-        coordinates: {
-          _lat: `${location.coordinates.lat.toString()}`,  // Replace with your actual latitude value
-          _long: `${location.coordinates.lon.toString()}`, // Replace with your actual longitude value
-        },
-      });
-      dispatch(addPosts(createRequest));
-      showToast("success", "Request Created")
-      navigate("/Requests");
-    } catch (error) {
-      shoawToast("error", error);
-    }
+  const submitData = async (formData) => {
+    console.log("submittinfg")
+   
+      setLoading(true)
+      console.log(formData);
+      try {
+        const createRequest = await RequestsApi.createRequest({
+          ...formData,
+          created_at: new Date().toLocaleDateString(),
+          photoUrl: user.photoUrl,
+          uid: user.uid,
+          coordinates: {
+            _lat: `${location.coordinates.lat.toString()}`,  // Replace with your actual latitude value
+            _long: `${location.coordinates.lon.toString()}`, // Replace with your actual longitude value
+          },
+        });
+        dispatch(addPosts(createRequest));
+        showToast("success", "Request Created")
+        navigate("/Requests");
+      } catch (error) {
+        shoawToast("error", error);
+      }
+    
+
   };
 
   return (
@@ -85,84 +91,7 @@ export default function CreatePost() {
         >
           <Stack spacing="6">
             <Stack spacing="5">
-              <FormInputs
-                formLabel="Name"
-                type="text"
-                name="name"
-                value={user.displayName}
-                handleChange={handleInputChange}
-                placeholder="Your Name"
-                disable={true}
-              />
-
-              <FormInputs
-                formLabel="Email"
-                type="email"
-                name="email"
-                value={user.email}
-                handleChange={handleInputChange}
-                placeholder="Your Email"
-                disable={true}
-              />
-
-              <FormInputs
-                formLabel="Mobile"
-                type="number"
-                name="mobile"
-                value={formData.mobile}
-                handleChange={handleInputChange}
-                placeholder="Your Mobile"
-                disable={false}
-              />
-
-              <FormControl>
-                <FormLabel htmlFor="foodType" fontWeight={"bold"} color={colorMode === "light" ? "light" : "primary.dark"}>Food Type</FormLabel>
-                <InputGroup>
-                <Select
-                  name="foodType"
-                  value={formData.food.type}
-                  onChange={(e) => {
-                    setFormData({
-                      ...formData,
-                      food: {
-                        ...formData.food,
-                        type: e.target.value,
-                      },
-                    });
-                  }}
-                  
-                >
-                  <option value="snack">Snack</option>
-                  <option value="lunch">Lunch</option>
-                  <option value="breakfast">Breakfast</option>
-                  <option value="juices">Juices</option>
-                </Select>
-                </InputGroup>
-                
-              </FormControl>
-
-              <FormInputs
-                formLabel="Quantity"
-                type="number"
-                name="quantity"
-                value={formData.food.quantity}
-                handleChange={(e) => {
-                  setFormData({
-                    ...formData,
-                    food: {
-                      ...formData.food,
-                      quantity: e.target.value,
-                    },
-                  });
-                }}
-                placeholder="Provide approx quantity"
-                disable={false}
-              />
-            </Stack>
-            <Stack spacing="6">
-              <Button onClick={submitData} color={colorMode === "light" ? "light" : "primary.dark"}>
-                {loading ? <Spinner color={colorMode === "light" ? "light" : "primary.dark"}/>:"Submit"}
-              </Button>
+              <RequestForm user={user} onSubmit= {submitData} isLoading={loading}/>
             </Stack>
           </Stack>
         </Box>

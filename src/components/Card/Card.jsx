@@ -1,8 +1,9 @@
-import { Box, Avatar, Badge, Text, Flex, Spacer, Button } from '@chakra-ui/react';
+import { Box, Avatar, Badge, Text, Flex, Spacer, Button,Container, useColorMode } from '@chakra-ui/react';
 import React from 'react';
 
 // Card component to display requestor details
 export function Card({ requestorDetails }) {
+  const { colorMode, toggleColorMode } = useColorMode();
   console.log("requestorDetails",JSON.parse(requestorDetails));
   const requestorDetail = JSON.parse(requestorDetails);
   
@@ -21,17 +22,17 @@ export function Card({ requestorDetails }) {
   const email = requestorDetail.email?.stringValue ?? 'No email provided';
   const name = requestorDetail.name?.stringValue ?? 'No name provided';
 
-  console.log("uid",uid);
-  console.log("mobile",mobile);
-  console.log("createdAt",createdAt);
-  console.log("foodType",foodType);
-  console.log("foodQuantity",foodQuantity);
-  console.log("photoUrl",photoUrl);
-  console.log("email",email);
-  console.log("name",name);
+  // console.log("uid",uid);
+  // console.log("mobile",mobile);
+  // console.log("createdAt",createdAt);
+  // console.log("foodType",foodType);
+  // console.log("foodQuantity",foodQuantity);
+  // console.log("photoUrl",photoUrl);
+  // console.log("email",email);
+  // console.log("name",name);
 
   return (
-    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" p="6">
+    <Container maxW="3xl" py={{ base: '12', md: '24' }} px={{ base: '0', sm: '8' }} color={colorMode === "light" ? "secondary" : "Light"}>
       <Flex justifyContent="center">
         <Avatar size="xl" name={name} src={photoUrl} />{' '}
       </Flex>
@@ -71,6 +72,7 @@ export function Card({ requestorDetails }) {
       >
         Request
       </Button>
-    </Box>
+
+    </Container>
   );
 }
