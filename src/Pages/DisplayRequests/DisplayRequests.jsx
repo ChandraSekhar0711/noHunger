@@ -26,11 +26,25 @@ export default function DisplayRequests() {
  
   console.table(post);
   //console.log(post);
+  function deleteExpiredRequests() {
+    RequestsApi.deleteExpiredRequests();
+  }
   useEffect(() => {
     const fetchData = async () => {
       await fetchAllPosts();
     };
     fetchData();
+    const unSub = RequestsApi.onShouldSyncNotes(fetchAllPosts)
+    return ()=>{
+      unSub();
+    }
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(deleteExpiredRequests, 60000); // Every minute
+
+    // Clean up interval on unmount
+    return () => clearInterval(interval);
   }, []);
   //console.log(List);
   return (

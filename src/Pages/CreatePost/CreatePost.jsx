@@ -72,6 +72,7 @@ export default function CreatePost() {
         showToast("success", "Request Created")
         navigate("/Requests");
       } catch (error) {
+        console.log(error);
         shoawToast("error", error);
       }
     
