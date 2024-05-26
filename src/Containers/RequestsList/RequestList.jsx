@@ -1,4 +1,5 @@
 import { useGeoLocation } from "@/hooks/useGeoLocation";
+import useRemainingMinutes from "@/hooks/useRemainingMinutes";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   Avatar,
@@ -24,6 +25,7 @@ import {
   TableCaption,
   TableContainer,
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { BiLike, BiPhone, BiSolidNavigation } from "react-icons/bi";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
@@ -45,6 +47,13 @@ export function RequestList({ list }) {
   const navigate = useNavigate();
   const { location } = useGeoLocation();
 
+  const expiryTimestamps = list.map((request) => ({
+    id: request.id,
+    expiryAt: request.expiryAt,
+  }));
+
+  const remainingMinutes = useRemainingMinutes(expiryTimestamps);
+
   function Direction(lat, lon) {
     console.log(lat, "+", lon);
     if (!location.loaded) {
@@ -56,6 +65,8 @@ export function RequestList({ list }) {
     }
   }
 
+ 
+
   return (
     <>
       <TableContainer w={{base:"3xl",md:"7xl"}}>
@@ -65,12 +76,14 @@ export function RequestList({ list }) {
               <Th textAlign={"center"}>Avatar</Th>
               <Th textAlign={"center"}>Name</Th>
               <Th textAlign={"center"}>Created At</Th>
+              <Th textAlign={"center"}>Expires In</Th>
               <Th textAlign={"center"}>Action</Th>
             </Tr>
           </Thead>
 
           {list.map((request, index) => {
             // Replace with the appropriate property from your data
+            const minutes = remainingMinutes[request.id] || 0;
             return (
               <Tr key={index}>
                 <Td textAlign={"center"}>
@@ -82,6 +95,9 @@ export function RequestList({ list }) {
                 <Td textAlign={"center"}>{request.name}</Td>
                 <Td textAlign={"center"}>
                   <Text>{request.created_at}</Text>
+                </Td>
+                <Td textAlign={"center"}>
+                  <Text>{minutes > 0 ? `${minutes} min` : "Expired"}</Text>
                 </Td>
                 <Td textAlign={"center"} onClick={() => navigate("/RequestDetails/" + request.id)} cursor={"pointer"} > <ExternalLinkIcon /> </Td>
               </Tr>

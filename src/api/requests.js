@@ -13,7 +13,7 @@ export class RequestsApi{
     const response= await addDoc(collection(FirebaseApp.db,"Requests"),values);
     return {
       id: response.id,
-      ...formValues,
+      ...values,
     }
   }
   static async fetchRequests(){
@@ -39,6 +39,8 @@ export class RequestsApi{
       batch.delete(doc.ref);
     });
     await batch.commit();
+    console.log("now1:", now);
+    return now;
   }
 
   static onShouldSyncNotes(onChange) {
