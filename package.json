@@ -32,7 +32,8 @@
     "react-spring": "^9.7.3",
     "redux-persist": "^6.0.0",
     "styled-components": "^6.1.8",
-    "sweetalert2": "^11.7.32"
+    "sweetalert2": "^11.7.32",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.64",

@@ -59,8 +59,7 @@ export default function Profile() {
           
           px={3}
         >
-          Actress, musician, songwriter and artist. PM for work inquires or{" "}
-          <Text >#tag</Text> me in your posts
+          
         </Text>
 
         <Stack align={"center"} justify={"center"} direction={"row"} mt={6}>

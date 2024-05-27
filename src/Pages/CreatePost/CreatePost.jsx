@@ -63,6 +63,7 @@ export default function CreatePost() {
           created_at: new Date().toLocaleDateString(),
           photoUrl: user.photoUrl,
           uid: user.uid,
+          userCollectionId: user.id,
           coordinates: {
             _lat: `${location.coordinates.lat.toString()}`,  // Replace with your actual latitude value
             _long: `${location.coordinates.lon.toString()}`, // Replace with your actual longitude value

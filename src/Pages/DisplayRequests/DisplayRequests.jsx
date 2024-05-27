@@ -13,7 +13,7 @@ import { RequestsApi } from "@/api/requests";
 
 export default function DisplayRequests() {
   const dispatch = useDispatch();
- 
+  const user = useSelector((store) => store.authSlice.auth.user);
   //console.log(isBottom);
   async function fetchAllPosts() {
     const requests = await RequestsApi.fetchRequests();
@@ -26,12 +26,13 @@ export default function DisplayRequests() {
 
   console.table(post);
   //console.log(post);
-    async function  deleteExpiredRequests() {
-    await RequestsApi.deleteExpiredRequests();
+  function deleteExpiredRequests() {
+    RequestsApi.deleteExpiredRequests(user.id);
 
   }
   useEffect(() => {
     const fetchData = async () => {
+      
       await fetchAllPosts();
     };
     fetchData();
@@ -47,7 +48,7 @@ export default function DisplayRequests() {
     return () => clearInterval(interval);
   }, []);
 
-  
+
   //console.log(List);
   return (
     <>
@@ -63,7 +64,7 @@ export default function DisplayRequests() {
 
       ) : (
         <Center width="full" p={{ base: 5, md: 50 }}>
-          <RequestList list={post}/>
+          <RequestList list={post} />
         </Center>
 
 

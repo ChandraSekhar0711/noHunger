@@ -65,11 +65,11 @@ export function RequestList({ list }) {
     }
   }
 
- 
+
 
   return (
     <>
-      <TableContainer w={{base:"3xl",md:"7xl"}}>
+      <TableContainer w={{ base: "3xl", md: "7xl" }}>
         <Table variant='simple'>
           <Thead >
             <Tr >
@@ -97,9 +97,9 @@ export function RequestList({ list }) {
                   <Text>{request.created_at}</Text>
                 </Td>
                 <Td textAlign={"center"}>
-                  <Text>{minutes > 0 ? `${minutes} min` : "Expired"}</Text>
+                  <Text>{minutes >= 0 ? `${minutes+1} min` : "Expired"}</Text>
                 </Td>
-                <Td textAlign={"center"} onClick={() => navigate("/RequestDetails/" + request.id)} cursor={"pointer"} > <ExternalLinkIcon /> </Td>
+                <Td textAlign={"center"} onClick={minutes >= 0 ? () => navigate("/RequestDetails/" + request.id) : null} cursor={minutes >= 0 ? "pointer" : "not-allowed"}> <ExternalLinkIcon /> </Td>
               </Tr>
 
               // <Card
