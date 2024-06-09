@@ -53,28 +53,36 @@ export default function CreatePost() {
   // };
 
   const submitData = async (formData) => {
-    console.log("submittinfg")
+    console.log("submitting the data")
    
-      setLoading(true)
-      console.log(formData);
-      try {
-        const createRequest = await RequestsApi.createRequest({
-          ...formData,
-          created_at: new Date().toLocaleDateString(),
-          photoUrl: user.photoUrl,
-          uid: user.uid,
-          userCollectionId: user.id,
-          coordinates: {
-            _lat: `${location.coordinates.lat.toString()}`,  // Replace with your actual latitude value
-            _long: `${location.coordinates.lon.toString()}`, // Replace with your actual longitude value
-          },
-        });
-        dispatch(addPosts(createRequest));
-        showToast("success", "Request Created")
-        navigate("/Requests");
-      } catch (error) {
-        console.log(error);
-        shoawToast("error", error);
+      
+      if(location.loaded){
+        setLoading(true)
+        console.log("formData after submitting:",formData);
+        
+        console.log("location loaded")
+        try {
+          const createRequest = await RequestsApi.createRequest({
+            ...formData,
+            created_at: new Date().toLocaleDateString(),
+            photoUrl: user.photoUrl,
+            uid: user.uid,
+            userCollectionId: user.id,
+            coordinates: {
+              _lat: `${location.coordinates.lat.toString()}`,  // Replace with your actual latitude value
+              _long: `${location.coordinates.lon.toString()}`, // Replace with your actual longitude value
+            },
+          });
+          dispatch(addPosts(createRequest));
+          showToast("success", "Request Created")
+          navigate("/Requests");
+        } catch (error) {
+          console.log(error);
+          showToast("error", error);
+        }
+      }
+      else{
+        showToast("error", "Please enable location");
       }
     
 

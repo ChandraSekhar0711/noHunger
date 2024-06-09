@@ -44,7 +44,7 @@ export function RequestForm({user,onSubmit,isLoading}) {
       function submit(e) {
         e.preventDefault()
         if(validateForm()){
-            console.log(formData);
+            console.log("formData before submitting:",formData);
             onSubmit(formData);
         }
         

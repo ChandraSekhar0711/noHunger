@@ -9,23 +9,31 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RequestsApi } from "@/api/requests";
+import useDistanceCalculator from "@/hooks/useDistanceCalculator";
+import { useGeoLocation } from "@/hooks/useGeoLocation";
 // import { withAuthRequired } from "@/hoc/withAuthRequired";
 
 export default function DisplayRequests() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.authSlice.auth.user);
+  
+  const userLocation = useGeoLocation();
+ 
   //console.log(isBottom);
   async function fetchAllPosts() {
     const requests = await RequestsApi.fetchRequests();
-    console.log("Requests:", requests);
+    // console.log("Requests:", requests);
     //const posts = await postsAPI.fetchAll();
+    
     dispatch(setPosts(requests));
   }
   const post = useSelector((store) => store.postSlice.posts);
+  const nearbyRequests = useDistanceCalculator(userLocation,post);
+   console.log("nearbyRequests:",nearbyRequests);
   // console.log("posts:",post);
 
-  console.table(post);
-  //console.log(post);
+  //console.table(post);
+  // console.log(post);
   function deleteExpiredRequests() {
     RequestsApi.deleteExpiredRequests(user.id);
 

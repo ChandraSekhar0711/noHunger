@@ -12,7 +12,7 @@ export class RequestsApi {
     const values = {
       ...formValues,
       createdAt: serverTimestamp(),
-      expiryAt: Timestamp.fromDate(new Date(Date.now() + 1 * 60 * 1000))
+      expiryAt: Timestamp.fromDate(new Date(Date.now() + 60 * 60 * 1000))
     }
     //console.log("new formvalues:",values);
     // const response= await addDoc(collection(FirebaseApp.db,"Requests",requestId),values);

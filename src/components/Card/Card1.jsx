@@ -15,6 +15,7 @@ import { BsPerson } from 'react-icons/bs';
 
 export function Card1({ requestorDetails }) {
   const requestorDetail = JSON.parse(requestorDetails);
+  console.log("requestorDetail:",requestorDetail);
   const uid = requestorDetail.uid?.stringValue ?? 'N/A';
   const mobile = requestorDetail.mobile?.stringValue ?? 'N/A';
   const createdAt = requestorDetail.created_at?.stringValue ?? 'N/A';

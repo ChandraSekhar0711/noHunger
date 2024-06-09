@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
+.firebase
+.idx
+.github
 
 # Editor directories and files
 .vscode/*
