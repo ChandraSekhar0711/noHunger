@@ -1,13 +1,16 @@
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:363945543.
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:1411816351.
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useGeoLocation } from "./useGeoLocation";
 
-export default function useDistanceCalculator(userLocation,requests) {
+const KM_RADIUS = 5; // Define the radius for nearby requests
+
+export default function useDistanceCalculator(requests) {
+  const userLocation = useGeoLocation();
   const [nearbyRequests, setNearbyRequests] = useState([]);
-  console.log("Requests",requests);
-  console.log("total number of requests",requests.length);
-  console.log(userLocation.location.loaded);
+
   useEffect(() => {
-    if (userLocation.location.loaded && requests.length > 0) {
+    if (requests.length > 0) {
       const filteredRequests = requests.filter(request => {
         const distance = calculateDistance(
           userLocation.location.coordinates.lat,
@@ -15,15 +18,17 @@ export default function useDistanceCalculator(userLocation,requests) {
           request.coordinates._lat,
           request.coordinates._long
         );
-        return distance <= 5; // 5km radius
+        return distance <= KM_RADIUS; 
       });
       console.log("filtered requests:",filteredRequests)
       setNearbyRequests(filteredRequests);
     }
-  }, []);
+  }, [requests, userLocation]); // Include userLocation in dependency array
 
-  const calculateDistance = (lat1, lon1, lat2, lon2) => {
-    const R = 6371; // Radius of the Earth in kilometers
+  // Helper function to calculate distance between two coordinates
+  const calculateDistance = (lat1, lon1, lat2,
+ lon2) => {
+    const EARTH_RADIUS_KM = 6371; 
     const dLat = degreesToRadians(lat2 - lat1);
     const dLon = degreesToRadians(lon2 - lon1);
     const a =
@@ -31,9 +36,10 @@ export default function useDistanceCalculator(userLocation,requests) {
       Math.cos(degreesToRadians(lat1)) * Math.cos(degreesToRadians(lat2)) *
       Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c; // Distance in kilometers
+    return EARTH_RADIUS_KM * c; 
   };
 
+  // Helper function to convert degrees to radians
   const degreesToRadians = (degrees) => {
     return degrees * (Math.PI / 180);
   };

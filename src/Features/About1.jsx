@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-export function About() {
+export function About1() {
     const visions = [
         { name: "Empower Sharing", value: "Facilitating the sharing of excess food to those in need, fostering community giving." },
         { name: "Reduce Food Waste", value: "Tackling global food waste by redirecting surplus food to maximize impact." },

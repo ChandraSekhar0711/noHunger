@@ -11,6 +11,7 @@ import { useGeoLocation } from "@/hooks/useGeoLocation";
 import { Landing } from "@/Features/Landing";
 import { About } from "@/Features/About";
 import { Working } from "@/Features/Working";
+import { About1 } from "@/Features/About1";
 export function Home() {
   const navigate = useNavigate();
   const auth = getAuth();

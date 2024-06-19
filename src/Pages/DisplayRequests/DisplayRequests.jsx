@@ -28,8 +28,8 @@ export default function DisplayRequests() {
     dispatch(setPosts(requests));
   }
   const post = useSelector((store) => store.postSlice.posts);
-  const nearbyRequests = useDistanceCalculator(userLocation,post);
-   console.log("nearbyRequests:",nearbyRequests);
+  // const nearbyRequests = useDistanceCalculator(userLocation,post);
+  //  console.log("nearbyRequests:",nearbyRequests);
   // console.log("posts:",post);
 
   //console.table(post);

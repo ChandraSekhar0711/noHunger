@@ -1,5 +1,7 @@
+import useDistanceCalculator from "@/hooks/useDistanceCalculator";
 import { useGeoLocation } from "@/hooks/useGeoLocation";
 import useRemainingMinutes from "@/hooks/useRemainingMinutes";
+import { setNearbyRequests } from "@/store/posts/posts-slice";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   Avatar,
@@ -28,10 +30,13 @@ import {
 import { useEffect, useState } from "react";
 import { BiLike, BiPhone, BiSolidNavigation } from "react-icons/bi";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 export function RequestList({ list }) {
+ const dispatch = useDispatch();
+
   const card = (
     <Card size={"sm"}
       onClick={() => navigate("/RequestDetails/" + request.id)}
@@ -46,7 +51,10 @@ export function RequestList({ list }) {
   )
   const navigate = useNavigate();
   const { location } = useGeoLocation();
-
+  //console.log("location:",location);
+  const nearbyRequests = useDistanceCalculator(list);
+  dispatch(setNearbyRequests(nearbyRequests))
+  console.log("nearbyRequests:", nearbyRequests);
   const expiryTimestamps = list.map((request) => ({
     id: request.id,
     expiryAt: request.expiryAt,

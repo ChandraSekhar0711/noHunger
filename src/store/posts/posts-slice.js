@@ -13,10 +13,10 @@ export const postSlice = createSlice({
     addPosts: (currentSlice, action) => {
       currentSlice.posts.push(action.payload);
     },
-    nearbyRequests: (currentSlice, action) => {
+    setNearbyRequests: (currentSlice, action) => {
       currentSlice.nearbyRequests = action.payload;
     },
   },
 });
 export const postReducer = postSlice.reducer;
-export const { setPosts, addPosts, nearbyRequests } = postSlice.actions;
+export const { setPosts, addPosts, setNearbyRequests } = postSlice.actions;
